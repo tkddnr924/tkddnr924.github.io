@@ -2,10 +2,7 @@
 title: Sangwook Blog
 description: Sangwook-Blog A Elegant template for Jekyll
 keywords: Modern, Blogging, Fun
-author: 
-  name: "tkddnr924"
-  email: "tkddnr924@naver.com"
-  url: "http://tkddnr924.github.io"
+author: "tkddnr924"
 
 # Build Settings
 baseurl: "/" # the subpath of your site, e.g. /blog/
