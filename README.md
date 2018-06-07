@@ -1,17 +1,8 @@
-# Jekyll Modern Blog
+# Sangwook Blog
+github.io를 이용하여 블로그 시작
 
-A Simple, Clean and responsive modern blog for jekyll.
+## 공부한 내용 저장 목적
+공부한 내용 추가
 
-## [Live Demo](http://inded.github.io/Jekyll_modern-blog/)
-
-## Attributions
-Based off of this [article from Codrops](http://tympanus.net/codrops/?p=24222)
-Using Sample images from [Fancy Crave](http://fancycrave.com/)
-
-## License
-
-Based off of this [Article on Codrops](http://tympanus.net/codrops/?p=24222)
-
-Created by Claudio Calautti for Codrops. Released under the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html).
-
-Changes being that I made it jekyll ready and smushed the CSS together.
+## 정보 저장 목적
+유용한 정보 저장 목적

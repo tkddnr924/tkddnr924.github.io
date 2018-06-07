@@ -3,7 +3,7 @@ title:  "Start"
 subtitle: "Github.io 블로그 시작"
 author: "tkddnr924"
 avatar: "img/authors/tkddnr924.jpg"
-image: "img/sm_flower1.jpg"
+image: "img/jeju.jpg"
 date:   2018-05-30 23:52:00
 ---
 
