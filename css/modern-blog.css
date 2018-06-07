@@ -38,7 +38,6 @@
 .card__container--closed .card__image {
 	position: relative;
 	cursor: pointer;
-	background-color: white;
 }
 /* Fix IE */
 
@@ -211,8 +210,7 @@ body {
 	background-size: cover;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow: hidden;
-	overflow-y: scroll;
+	overflow: auto;
 }
 
 body.body--hidden {
