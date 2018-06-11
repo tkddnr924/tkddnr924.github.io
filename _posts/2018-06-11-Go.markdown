@@ -1,0 +1,14 @@
+---
+title:  "가고픈 곳 정리"
+subtitle: "세명이랑"
+author: "tkddnr924"
+avatar: "img/authors/tkddnr924.jpg"
+image: "img/heart.png"
+date:   2018-06-11 19:30:00
+---
+
+# 제주
+1. 제주 베니스랜드
+
+# 부산
+1. 타임캡슐?
