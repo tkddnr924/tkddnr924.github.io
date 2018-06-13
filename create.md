@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Create an event using Evento
-navigation_title: Create Event
+navigation_title: Event 만들기
 permalink: /create/
 button: true
 
