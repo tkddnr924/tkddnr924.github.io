@@ -1,31 +1,83 @@
-# Evento Theme/Blog
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+# SITE CONFIGURATION
+baseurl: "/type-theme"
+url: "https://tkddnr924.github.io/"
 
-# Site settings
-title: ASVV
+# THEME-SPECIFIC CONFIGURATION
+theme_settings:
+  # Meta
+  title: Type Theme
+  avatar: assets/img/sangwook.jpg
+  favicon: assets/favicon.ico
+  gravatar: # Email MD5 hash
+  description: "ASVV BLOG" # used by search engines
 
-#What is the name of the events or talks you would like to host? (Example Brownbags, Talks, Lighting Talks)
-event_label: Events
+  # Header and footer text
+  header_text: >
+    ASVV BLOG
+  header_text_feature_image:
+  footer_text: >
+   Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/rohanchandra/type-theme">Type Theme</a>
 
-description: > # this means to ignore newlines until "baseurl:"
-  ASVV Blog
+  # Icons
+  rss: true
+  email_address: # Full email address, e.g. "sam@example.com"
+  behance:
+  bitbucket:
+  dribbble:
+  facebook: "sangwook924"
+  flickr:
+  gitlab:
+  github: "tkddnr924/tkddnr924.github.io"
+  google_plus:
+  instagram: "wook__0603"
+  linkedin:  # Full URL
+  pinterest:
+  reddit:
+  soundcloud:
+  stack_exchange:  # Full URL
+  steam:
+  tumblr:
+  twitter:
+  wordpress:
+  youtube:
 
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://tkddnr924.github.io" # the base hostname & protocol for your site
+  # Scripts
+  google_analytics: # Tracking ID, e.g. "UA-000000-01"
+  disqus_shortname:
+  katex: true # Enable if using math markup
+  search: false # Enable the search feature
 
-#These settings might be able to go?
-author: Ahn Sangwook
-github_username:  tkddnr924
+  # Localization strings
+  str_follow_on: "Follow on"
+  str_rss_follow: "Follow RSS feed"
+  str_email: "Email"
+  str_next_post: "Next post"
+  str_previous_post: "Previous post"
+  str_next_page: "Next"
+  str_previous_page: "Prev"
+  str_continue_reading: "Continue reading"
+  str_javascript_required_disqus: "Please enable JavaScript to view comments."
+  str_search_no_results: "No results found."
 
-# Build settings
+  # Colours, typography and padding
+  # Open the "_sass > base" folder, and open "_variables.scss"
+  google_fonts: "Source+Sans+Pro:400,700,700italic,400italic"
+
+  # Post navigation
+  post_navigation: false
+
+# PAGINATION
+paginate: 5
+paginate_path: "blog/page:num"
+
+# BUILD SETTINGS
 markdown: kramdown
-
-#Have to show future posts for future events.
-future: true
-
-permalink: /event/:title.html
-
+highlighter: rouge
+sass:
+  sass_dir: _sass
+  style: :compressed
+plugins: [jekyll-paginate]
+theme: jekyll-theme-type
+exclude:
+  - Gemfile
+  - Gemfile.lock
