@@ -5,7 +5,7 @@ url: "https://tkddnr924.github.io/"
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Type Theme
+  title: ASVV
   avatar: assets/img/sangwook.jpg
   favicon: assets/favicon.ico
   gravatar: # Email MD5 hash
@@ -20,7 +20,7 @@ theme_settings:
 
   # Icons
   rss: true
-  email_address: # Full email address, e.g. "sam@example.com"
+  email_address: "tkddnr924@naver.com" # Full email address, e.g. "sam@example.com"
   behance:
   bitbucket:
   dribbble:
@@ -45,7 +45,7 @@ theme_settings:
   google_analytics: # Tracking ID, e.g. "UA-000000-01"
   disqus_shortname:
   katex: true # Enable if using math markup
-  search: false # Enable the search feature
+  search: true # Enable the search feature
 
   # Localization strings
   str_follow_on: "Follow on"
