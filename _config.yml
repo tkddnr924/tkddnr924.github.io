@@ -1,6 +1,6 @@
 # SITE CONFIGURATION
-baseurl: "/"
-url: "https://tkddnr924.github.io/"
+baseurl: "https://tkddnr924.github.io"
+url: "https://tkddnr924.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
