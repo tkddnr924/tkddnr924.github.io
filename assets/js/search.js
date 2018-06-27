@@ -55,6 +55,12 @@
         }
     }
 
+    function trimmerEnKo(token) {
+      return token
+        .replace(/^[^\w가-힣]+/, '')
+        .replace(/[^\w가-힣]+$/, '');
+    };
+
     function addPostToSearchIndex(lunrIndex, key, postJSON) {
       lunrIndex.add({
           "id": key,
@@ -69,10 +75,14 @@
       setSearchBoxValue(searchTerm);
 
       var lunrIndex = lunr(function () {
+          this.pipeline.reset();
+          this.pipeline.add(
+            trimmerEnKo,
+            lunr.stopWordFilter,
+            lunr.stemmer
+          );
           this.field("id");
-          this.field("title", {
-              boost: 10
-          });
+          this.field("title", { boost: 10 });
           this.field("author");
           this.field("category");
           this.field("content");
