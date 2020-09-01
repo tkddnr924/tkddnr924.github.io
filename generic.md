@@ -11,7 +11,7 @@ nav-menu: true
 <div id="main">
 
 <!-- Two -->
-<section id="two" class="spotlights">
+<section id="one" class="spotlights">
 	<section>
 		<a class="image">
 			<img src="{% link assets/images/pic08.jpg %}" alt="" data-position="center center" />
@@ -47,16 +47,16 @@ nav-menu: true
 			</div>
 		</div>
 	</section>
-	<section id="three">
-    	<div class="inner">
-    		<header class="major">
-    			<h2>Project</h2>
-    		</header>
-    		<p>현재 까지 진행 한 프로젝트</p>
-    		<ul class="actions">
-    			<li><a href="#" class="button next">Go to</a></li>
-    		</ul>
-    	</div>
-    </section>
+</section>
+<section id="two">
+    <div class="inner">
+    	<header class="major">
+    		<h2>Project</h2>
+    	</header>
+    	<p>현재 까지 진행 한 프로젝트</p>
+    	<ul class="actions">
+    		<li><a href="#" class="button next">Go to</a></li>
+    	</ul>
+    </div>
 </section>
 </div>
