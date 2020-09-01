@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: landing
 title: Skills
 description: Programming Language & Interests
 image: assets/images/pic12.jpeg
