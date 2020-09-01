@@ -20,11 +20,11 @@ nav-menu: true
 <div class="row">
     <div class="6u 12u$(small)">
         <h3>선문대학교 입학</h3>
-        <p>컴퓨터공학과 입학</p>
+        <p>컴퓨터공학과</p>
     </div>
     <div class="6u$ 12u$(small)">
         <h3>선문 BIT 단기 & 고급 과정 30기</h3>
-        <p>대학교에서 진행한 프로그램으로 프로그래밍 기초를 다짐.</p>
+        <p>대학교에서 진행한 프로그램으로 프로그래밍을 시작함.</p>
         <ul>
             <li>C 언어</li>
             <li>C ++</li>

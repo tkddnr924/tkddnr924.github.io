@@ -6,12 +6,12 @@ description: 안상욱의 Portfolio
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author: Ahn Sangwook
-street_address:
-city:
-state:
-zip_code:
+street_address: 장말로 137
+city: 부천
+state: 경기도
+zip_code: 18600
 country: Republic of Korea
-phone:
+phone: 010-2971-8061
 
 # homepage tiles
 tiles-source: pages # accepts "posts" or "pages"
