@@ -2,6 +2,7 @@
 layout: post
 title: Skills
 description: Programming Language & Interests
+image: assets/images/pic12.jpeg
 nav-menu: true
 ---
 
