@@ -1,6 +1,7 @@
 ---
 layout: page
 title: EXPERIENCE
+description: 2015 ~ 2020 Experience
 nav-menu: true
 ---
 
