@@ -37,10 +37,9 @@ nav-menu: true
 <div class="row">
     <div class="12u$">
         <h3>Best of the Best 5th</h3>
-        <p>디지털 포렌식, 네트워크 해킹, 운영체제 등 교육</p>
-        <p>Python Django를 이용하여 프로젝트 진행</p>
+        <p>디지털 포렌식, 네트워크 해킹, 운영체제 등 교육. Python Django를 이용하여 프로젝트 진행</p>
     </div>
-    <div class="3u 6u$(small)">
+    <div class="6u 12u$(small)">
         <h3>Digital Forensic</h3>
         <ul>
             <li>메모리 포렌식, 디스크 포렌식, 네트워크 포렌식</li>
@@ -48,21 +47,21 @@ nav-menu: true
             <li>안티 포렌식</li>
         </ul>
     </div>
-    <div class="3u 6u$(small)">
+    <div class="6u$ 12u$(small)">
         <h3>네트워크 포렌식</h3>
         <ul>
             <li>무선 인터넷 해킹</li>
             <li>ARP Spoofing, 도구 개발</li>
         </ul>
     </div>
-    <div class="3u 6u$(small)">
+    <div class="6u 12u$(small)">
         <h3>Operating System(OS)</h3>
         <ul>
             <li>HDL을 이용하여 컴퓨터 구조 교육</li>
             <li>논리 구조 등</li>
         </ul>
     </div>
-    <div class="3u 6u$(small)">
+    <div class="6u$ 12u$(small)">
         <h3>DLL Hooking</h3>
         <ul>
             <li>핫 패치 코드에 JMP 코드를 추가하여 calc.exe 실행</li>
