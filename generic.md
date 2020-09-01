@@ -47,5 +47,16 @@ nav-menu: true
 			</div>
 		</div>
 	</section>
+	<section id="three">
+    	<div class="inner">
+    		<header class="major">
+    			<h2>Project</h2>
+    		</header>
+    		<p>현재 까지 진행 한 프로젝트</p>
+    		<ul class="actions">
+    			<li><a href="#" class="button next">Go to</a></li>
+    		</ul>
+    	</div>
+    </section>
 </section>
 </div>
