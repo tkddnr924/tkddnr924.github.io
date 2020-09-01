@@ -2,6 +2,7 @@
 layout: page
 title: EXPERIENCE
 description: 2015 ~ 2020 Experience
+image: assets/images/pic13.jpeg
 nav-menu: true
 ---
 
