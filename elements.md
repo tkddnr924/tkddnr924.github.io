@@ -18,17 +18,16 @@ nav-menu: true
 <h2 id="content">2015 Summary</h2>
 <p>선문대학교 컴퓨터 공학과 입학 후 선문 BIT 과정 진행.</p>
 <div class="row">
-    <div class="6u 12u$(small)">
+    <div class="3u 12u$(small)">
         <h3>선문대학교 입학</h3>
         <p>컴퓨터공학과</p>
     </div>
-    <div class="6u$ 12u$(small)">
+    <div class="9u$ 12u$(small)">
         <h3>선문 BIT 단기 & 고급 과정 30기</h3>
         <p>대학교에서 진행한 프로그램으로 프로그래밍을 시작함.</p>
         <ul>
-            <li>C 언어</li>
-            <li>C ++</li>
-            <li>C #</li>
+            <li>C 언어, C++, C# 프로그래밍</li>
+            <li>소켓 사용, 패킷 캡처 도구 개발, Bluetooth를 이용하여 PC Remote 도구 개발</li>
         </ul>  
     </div>
 </div>
@@ -38,7 +37,8 @@ nav-menu: true
 <div class="row">
     <div class="12u$">
         <h3>Best of the Best 5th</h3>
-        <p>디지털 포렌식, 네트워크 해킹, 운영체제 등 교육 수료</p>
+        <p>디지털 포렌식, 네트워크 해킹, 운영체제 등 교육</p>
+        <p>Python Django를 이용하여 프로젝트 진행</p>
     </div>
     <div class="3u 6u$(small)">
         <h3>Digital Forensic</h3>
@@ -70,7 +70,7 @@ nav-menu: true
     </div>    
 </div>
 <hr class="major" />
-<h2 id="content3">2017 Summary ~ 2019 Summary</h2>
+<h2 id="content3">2017 ~ 2019 Summary</h2>
 <p>공군 정보보호병 782기, 공군 사이버 작전 센터 근무</p>
 <div class="row">
     <div class="12u$">
@@ -80,7 +80,7 @@ nav-menu: true
 </div>
 <hr class="major" />
 <h2 id="content4">2020 Sumary</h2>
-<p>대학교 복학 후, 외주를 진행 함</p>
+<p>대학교 복학 후, 외주 진행</p>
 </div>
 </section>
 
