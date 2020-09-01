@@ -1,10 +1,10 @@
 ---
 layout: home
 title: Home
-landing-title: 'Hi, my name is Forty'
-description: null
+landing-title: 'Hi, my name is 안상욱'
+description: My Portfolio
 image: null
-author: null
+author: 안상욱
 show_tile: false
 ---
 
