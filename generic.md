@@ -31,7 +31,7 @@ nav-menu: true
 		</div>
 	</section>
 	<section>
-		<a href="generic.html" class="image">
+		<a class="image">
 			<img src="{% link assets/images/pic09.jpg %}" alt="" data-position="top center" />
 		</a>
 		<div class="content">
@@ -51,11 +51,11 @@ nav-menu: true
 <section id="two">
     <div class="inner">
     	<header class="major">
-    		<h2>Project</h2>
+    		<h2>Recent Projects</h2>
     	</header>
-    	<p>현재 까지 진행 한 프로젝트</p>
+    	<p>2020년에 진행한 프로젝트</p>
     	<ul class="actions">
-    		<li><a href="#" class="button next">Go to</a></li>
+    		<li><a href="landing.html" class="button next">Go to</a></li>
     	</ul>
     </div>
 </section>

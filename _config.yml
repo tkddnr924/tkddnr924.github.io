@@ -3,7 +3,7 @@ title: Portfolio
 subtitle: by 안상욱
 email: tkddnr924@gmail.com
 description: 안상욱의 Portfolio
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/portfolio" # the subpath of your site, e.g. /blog
 url: # the base hostname & protocol for your site
 author: Ahn Sangwook
 street_address:
