@@ -32,7 +32,7 @@ nav-menu: true
 				</header>
 				<p>5월에 진행한 프로젝트로 외주를 받아 진행하였습니다. Vue.js와 Python Flask를 이용하여 Web을 개발하였습니다.</p>
 				<ul class="actions">
-					<li><a href="2020/05/01/QnA.html" class="button">Learn more</a></li>
+					<li><a href="2020/05/01/QnA.html" class="button">See more</a></li>
 				</ul>
 			</div>
 		</div>
@@ -48,7 +48,7 @@ nav-menu: true
 				</header>
 				<p>4월에 진행한 프로젝트로 외주를 받아 진행하였습니다. Vue.js와 Node.js Express를 이용하여 Web을 개발하였습니다.</p>
 				<ul class="actions">
-					<li><a href="2020/03/01/dAppStore.html" class="button">Learn more</a></li>
+					<li><a href="2020/03/01/dAppStore.html" class="button">See more</a></li>
 				</ul>
 			</div>
 		</div>
@@ -64,7 +64,7 @@ nav-menu: true
 				</header>
 				<p>2월에 진행한 프로젝트로 외주를 받아 진행하였습니다. Vue.js와 Node.js Express를 이용하여 Web을 개발하였습니다.</p>
 				<ul class="actions">
-					<li><a href="2020/01/01/philbit.html" class="button">Learn more</a></li>
+					<li><a href="2020/01/01/philbit.html" class="button">See more</a></li>
 				</ul>
 			</div>
 		</div>

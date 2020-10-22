@@ -10,11 +10,11 @@ description: 외주
 
 기존의 개발된 웹 전체적인 수정.
 
-## 사용 기술
+## Use
 - Vue.js를 이용하여 Front-end 개발
 - Node.js Express를 이용하여 Back-end 개발
 
-## 내가 맡은 작업
+## My Works
 1. 기존 개발된 Web UI/UX 개선
 2. Vuex 사용
 3. Go-Ethereum을 이용.
