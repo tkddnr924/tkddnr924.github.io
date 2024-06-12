@@ -1,12 +1,14 @@
 {
-  "name": "minfo-next",
+  "name": "sangwook_portfolio",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://tkddnr924.github.io",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve": "npx http-server out"
   },
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.2.0",
