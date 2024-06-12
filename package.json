@@ -5,7 +5,11 @@
   "homepage": "https://tkddnr924.github.io",
   "scripts": {
     "dev": "next dev",
-    "build": "next build & next export",
+    "build": "next build",
+    "preexport": "rimraf out",
+    "export": "next export",
+    "touch": "touch out/.nojekyll",
+    "posttouch": "touch out/_next/.nojekyll",
     "start": "next start",
     "lint": "next lint",
     "serve": "npx http-server out"
