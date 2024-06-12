@@ -1,12 +1,8 @@
-import Button from "../ui/Button";
 import heroImg from "@/public/assets/img/hero-img-1.png";
 import heroImgDark from "@/public/assets/img/hero-img-2.png";
-import { introduce, partners } from "@/src/staticData/home/home";
+import { introduce } from "@/src/staticData/home/home";
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
-import { IoMdPaperPlane } from "react-icons/io";
 import IntroduceJob from "./IntroduceJob";
-import TrustedCompany from "./TrustedCompany";
 
 const Hero = () => {
   return (

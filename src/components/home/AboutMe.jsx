@@ -1,11 +1,8 @@
 import {
   projectExperiences,
-  technologies,
   userDetails,
-  userDetailsSidebar,
 } from "@/src/staticData/home/home";
 import { CiUser } from "react-icons/ci";
-import AboutTechnologies from "./AboutTechnologies";
 import UserDetail from "./UserDetail";
 import ProjectExperience from "./ProjectExperience";
 
