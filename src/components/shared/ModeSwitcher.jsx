@@ -26,11 +26,11 @@ const ModeSwitcher = () => {
       }`}
       onClick={() => setSwitchActive(!switchActive)}
     >
-      <div className="toggle-btn absolute -left-15 w-15 h-15 bg-white dark:bg-nightBlack text-black dark:text-white flex-center cursor-pointer rounded-[.5rem_0_0_.5rem] select-none shadow-sm shadow-slate-400">
+      {/* <div className="toggle-btn absolute -left-15 w-15 h-15 bg-white dark:bg-nightBlack text-black dark:text-white flex-center cursor-pointer rounded-[.5rem_0_0_.5rem] select-none shadow-sm shadow-slate-400">
         <span className="animate-spin">
           <IoSettingsOutline size={17} />
         </span>
-      </div>
+      </div> */}
 
       <div className="theme-select shadow-sm shadow-slate-400 px-6 py-4 bg-white dark:bg-nightBlack rounded-[0_0_0_.5rem]">
         <h5 className="font-medium mb-2 !text-black dark:!text-white text-lg">

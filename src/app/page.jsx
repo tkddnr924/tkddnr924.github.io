@@ -16,12 +16,12 @@ export default async function Home() {
       <Hero />
       <AboutMe />
       <Service />
-      <Skills />
+      {/* <Skills /> */}
       <Resume />
-      <Portfolio />
-      <Blog />
-      <Testimonial />
-      <ContactMe />
+      {/* <Portfolio /> */}
+      {/* <Blog /> */}
+      {/* <Testimonial /> */}
+      {/* <ContactMe /> */}
       <Footer />
     </Layout>
   );

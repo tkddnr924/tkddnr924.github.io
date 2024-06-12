@@ -32,13 +32,13 @@ const Hero = () => {
                 <IntroduceJob key={i} {...item} />
               ))}
             </ul>
-            <ul className="mt-7 buttons">
+            {/* <ul className="mt-7 buttons">
               <li data-scroll-nav="8">
                 <Button text="HIRE ME" prefix={<IoMdPaperPlane size={18} />} />
               </li>
-            </ul>
+            </ul> */}
           </div>
-          <div className="hero-image flex-[0_0_20.3rem] max-md:hidden">
+          <div className="hero-image flex-[0_0_15.3rem] max-md:hidden">
             <Image
               src={heroImg?.src}
               width={350}
@@ -58,7 +58,7 @@ const Hero = () => {
             />
           </div>
         </div>
-        <div className="mb-2 mt-14 xl:mb-0 xl:mt-20">
+        {/* <div className="mb-2 mt-14 xl:mb-0 xl:mt-20">
           <div className="items-center grid-cols-12 overflow-hidden md:grid">
             <div className="hidden col-span-2 md:inline-block">
               <h6 className="font-medium text-black dark:text-white/80 text-sm md:max-w-[8rem] border-l border-theme pl-4">
@@ -77,7 +77,7 @@ const Hero = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

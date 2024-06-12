@@ -29,6 +29,7 @@ const SidebarProfile = () => {
           >
             <Image
               className="hidden dark:block w-full h-full rounded-full"
+              style={{ objectFit: 'cover' }}
               src={userDetailsSidebar?.userImage}
               alt={userDetailsSidebar?.userName}
               width={200}
@@ -36,6 +37,7 @@ const SidebarProfile = () => {
             />
             <Image
               className="dark:hidden w-full h-full rounded-full"
+              style={{ objectFit: 'cover' }}
               src={userDetailsSidebar?.userImageLight}
               alt={userDetailsSidebar?.userName}
               width={200}
@@ -97,7 +99,7 @@ const SidebarProfile = () => {
 
                         return (
                           <CircularProgressbarWithChildren
-                            strokeWidth={3}
+                            strokeWidth={8}
                             className="relative w-12 h-12 circle"
                             styles={{
                               root: {},
@@ -148,7 +150,7 @@ const SidebarProfile = () => {
           </div>
           <div className="mt-6">
             <Link
-              href="blank.pdf"
+              href="AhnSangwook_cv.pdf"
               download
               target="_blank"
               className="text-center text-sm border border-theme bg-theme flex items-center justify-center gap-2 text-white rounded-4xl py-3.5 transition duration-300 text-[15px] font-semibold hover:bg-themeHover hover:border-themeHover"
