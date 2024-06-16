@@ -4,9 +4,8 @@ const prefix = process.env.NODE_ENV === 'production' ? 'https://tkddnr924.github
 const nextConfig = {
   output: 'export',
   assetPrefix: prefix,
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: { unoptimized: true },
-  basePath: process.env.NODE_ENV === 'production' ? '/' : ''
 };
 
 export default nextConfig;
