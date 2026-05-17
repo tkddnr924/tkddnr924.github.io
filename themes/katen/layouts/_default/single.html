@@ -1,0 +1,49 @@
+{{ define "hero" }}
+<div class="single-post-header">
+  <div class="container">
+    {{ with index .Params.categories 0 }}
+    <a class="single-post-category" href="{{ (index $.Site.Taxonomies.categories (lower .)).Page.RelPermalink }}">{{ . }}</a>
+    {{ end }}
+    <h1 class="single-post-title">{{ .Title }}</h1>
+    <div class="single-post-meta">
+      <span class="author">
+        <i class="far fa-user"></i>
+        {{ .Params.author | default .Site.Params.author }}
+      </span>
+      <span class="sep">·</span>
+      <span>{{ .Date.Format "January 02, 2006" }}</span>
+      <span class="sep">·</span>
+      <span>{{ .ReadingTime }} min read</span>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "main" }}
+<div class="single-wrap">
+
+  <article class="single-post">
+
+    {{ with .Params.image }}
+    <div class="single-post-thumb">
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+    </div>
+    {{ end }}
+
+    <div class="single-post-content">
+      {{ .Content }}
+    </div>
+
+    {{ with .Params.tags }}
+    <div class="single-post-tags">
+      <strong>Tags:</strong>
+      {{ range . }}
+      <a href="{{ (index $.Site.Taxonomies.tags (lower .)).Page.RelPermalink }}" class="tag-cloud" style="display:inline-block; margin:2px;">#{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+  </article>
+
+</div>
+{{ end }}

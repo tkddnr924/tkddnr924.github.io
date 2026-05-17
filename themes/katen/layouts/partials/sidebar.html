@@ -1,0 +1,93 @@
+<aside class="sidebar">
+
+  <!-- About Widget -->
+  <div class="widget widget-about">
+    <div class="about-logo">{{ .Site.Params.logo | default "ASVV" }}<span class="dot">.</span></div>
+    <p class="about-desc">{{ .Site.Params.description }}</p>
+    <div class="about-social">
+      {{ with .Site.Params.social.twitter }}<a href="{{ . }}" aria-label="Twitter"><i class="fab fa-twitter"></i></a>{{ end }}
+      {{ with .Site.Params.social.youtube }}<a href="{{ . }}" aria-label="YouTube"><i class="fab fa-youtube"></i></a>{{ end }}
+      {{ with .Site.Params.social.pinterest }}<a href="{{ . }}" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>{{ end }}
+      {{ with .Site.Params.social.tiktok }}<a href="{{ . }}" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>{{ end }}
+      {{ with .Site.Params.social.instagram }}<a href="{{ . }}" aria-label="Instagram"><i class="fab fa-instagram"></i></a>{{ end }}
+    </div>
+  </div>
+
+  <!-- Popular Posts -->
+  <div class="widget">
+    <h3 class="widget-title">Popular Posts</h3>
+    <div class="popular-posts">
+      {{ range $i, $p := first 3 (where .Site.RegularPages "Type" "posts") }}
+      <div class="popular-post-item">
+        <span class="popular-post-num">{{ printf "%02d" (add $i 1) }}</span>
+        <div class="popular-post-info">
+          <div class="popular-post-title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></div>
+          <div class="popular-post-date">{{ $p.Date.Format "02 January 2006" }}</div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- Explore Topics -->
+  <div class="widget">
+    <h3 class="widget-title">Explore Topics</h3>
+    <div class="topics-list">
+      {{ range .Site.Taxonomies.categories.ByCount }}
+      <a class="topic-item" href="{{ .Page.RelPermalink }}">
+        <span>{{ .Page.Title }}</span>
+        <span class="topic-count">{{ .Count }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="widget">
+    <h3 class="widget-title">Newsletter</h3>
+    <p class="newsletter-sub">Join 70,000 subscribers!</p>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input class="newsletter-input" type="email" placeholder="Email address">
+      <button class="btn-newsletter" type="submit">Sign Up</button>
+    </form>
+    <p class="newsletter-note">By signing up, you agree to our <a href="#">Privacy Policy</a></p>
+  </div>
+
+  <!-- Featured Sidebar Post -->
+  {{ $featured := first 1 (where .Site.RegularPages "Params.featured" true) }}
+  {{ range $featured }}
+  <div class="widget">
+    <h3 class="widget-title">{{ index .Params.categories 0 | default "Featured" }}</h3>
+    <div class="sidebar-feature">
+      {{ with .Params.image }}
+      <img class="sidebar-feature-img" src="{{ . }}" alt="{{ $.Title }}">
+      {{ else }}
+      <img class="sidebar-feature-img" src="https://picsum.photos/seed/{{ .Title | urlize }}sb/400/300" alt="{{ .Title }}">
+      {{ end }}
+      <div class="sidebar-feature-overlay"></div>
+      <div class="sidebar-feature-content">
+        {{ with index .Params.categories 0 }}
+        <span class="sidebar-feature-category">{{ . }}</span>
+        {{ end }}
+        <div class="sidebar-feature-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+        <div class="sidebar-feature-meta">
+          <span>{{ .Params.author | default $.Site.Params.author }}</span>
+          <span>&middot;</span>
+          <span>{{ .Date.Format "02 January 2006" }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Tag Cloud -->
+  <div class="widget">
+    <h3 class="widget-title">Tag Clouds</h3>
+    <div class="tag-cloud">
+      {{ range .Site.Taxonomies.tags.ByCount }}
+      <a href="{{ .Page.RelPermalink }}">#{{ .Page.Title }}</a>
+      {{ end }}
+    </div>
+  </div>
+
+</aside>

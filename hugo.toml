@@ -1,0 +1,53 @@
+baseURL = "https://tkddnr924.github.io/"
+languageCode = "ko-KR"
+title = "ASVV."
+theme = "katen"
+[pagination]
+  pagerSize = 6
+summaryLength = 30
+
+[params]
+  description = "Hello, We're a content writer who is fascinated to connect humans, creativity and lifestyle. We help clients doing the right content in the right place."
+  author = "tkddnr924"
+  logo = "ASVV"
+
+[params.social]
+  facebook = "#"
+  twitter = "#"
+  instagram = "#"
+  pinterest = "#"
+  tiktok = "#"
+  youtube = "#"
+
+[menus]
+[[menus.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menus.main]]
+  name = "Artifact"
+  url = "/categories/artifact/"
+  weight = 2
+
+[[menus.main]]
+  name = "DFIR"
+  url = "/categories/dfir/"
+  weight = 3
+
+[[menus.main]]
+  name = "Threat Intelligence"
+  url = "/categories/threat-intelligence/"
+  weight = 4
+
+[[menus.main]]
+  name = "IoC"
+  url = "/ioc/"
+  weight = 5
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"

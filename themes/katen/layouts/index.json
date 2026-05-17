@@ -1,0 +1,15 @@
+{{- $pages := where .Site.RegularPages "Type" "in" (slice "posts" "artifact" "dfir" "threat-intelligence") -}}
+[
+  {{- range $i, $p := $pages -}}
+  {{- if $i -}},{{- end -}}
+  {
+    "title":      {{ $p.Title | jsonify }},
+    "url":        {{ $p.RelPermalink | jsonify }},
+    "summary":    {{ $p.Summary | jsonify }},
+    "content":    {{ $p.Plain | truncate 500 | jsonify }},
+    "categories": {{ $p.Params.categories | jsonify }},
+    "tags":       {{ $p.Params.tags | jsonify }},
+    "date":       {{ $p.Date.Format "January 02, 2006" | jsonify }}
+  }
+  {{- end -}}
+]

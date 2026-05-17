@@ -1,0 +1,96 @@
+{{ define "hero" }}
+{{ $posts := where .Site.RegularPages "Type" "posts" }}
+{{ if $posts }}
+<div style="padding: 20px 0 0;">
+  <div class="hero-wrap">
+    <section class="hero-slider" id="hero-slider">
+
+      {{ range first 3 $posts }}
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background: linear-gradient(160deg, #2c3e6b 0%, #3d5273 100%)"></div>
+        <div class="hero-slide-content">
+          {{ with index .Params.categories 0 }}
+          <span class="hero-category">{{ . }}</span>
+          {{ end }}
+          <h2 class="hero-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+          <div class="hero-meta">
+            <span>{{ .Params.author | default $.Site.Params.author }}</span>
+            <span class="hero-meta-dot"></span>
+            <span>{{ .Date.Format "January 02, 2006" }}</span>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+
+      <button class="slider-btn prev" id="slider-prev" aria-label="Previous">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="slider-btn next" id="slider-next" aria-label="Next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="slider-dots" id="slider-dots"></div>
+
+    </section>
+  </div>
+</div>
+{{ end }}
+{{ end }}
+
+{{ define "main" }}
+<div class="content-wrapper" style="padding-top: 52px;">
+
+  <div class="posts-area">
+    <div class="posts-list">
+      {{ $posts := where .Site.RegularPages "Type" "posts" }}
+      {{ if not $posts }}
+      <div class="empty-state">
+        <div class="empty-state-icon"><i class="fas fa-pen-nib"></i></div>
+        <h2 class="empty-state-title">아직 작성된 글이 없습니다</h2>
+        <p class="empty-state-desc">첫 번째 포스트를 작성해 보세요.</p>
+      </div>
+      {{ end }}
+      {{ range $i, $post := $posts }}
+
+      {{ if and (gt $i 0) (eq (mod $i 2) 0) }}
+      {{ with index $post.Params.categories 0 }}
+      <div class="category-divider">
+        <a class="category-badge" href="{{ (index $.Site.Taxonomies.categories (lower .)).Page.RelPermalink }}">{{ . }}</a>
+      </div>
+      {{ end }}
+      {{ end }}
+
+      {{ $tag := index $post.Params.categories 0 | default (index $post.Params.tags 0) | default "Post" }}
+
+      <article class="post-card">
+        <div class="post-card-thumb">
+          <div class="thumb-gradient" style="background: linear-gradient(135deg, #38bdf8 0%, #14b8a6 100%);">
+            <span class="thumb-tag-text">{{ $tag }}</span>
+          </div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-meta">
+            <span class="author">
+              <i class="far fa-user"></i>
+              {{ $post.Params.author | default $.Site.Params.author }}
+            </span>
+            <span class="meta-dot"></span>
+            <span>{{ $post.Date.Format "January 02, 2006" }}</span>
+            <span class="meta-dot"></span>
+            <span><i class="far fa-comment"></i> 0</span>
+          </div>
+          <h2 class="post-card-title">
+            <a href="{{ $post.RelPermalink }}">{{ $post.Title }}</a>
+          </h2>
+          <p class="post-card-excerpt">{{ $post.Summary }}</p>
+          <a class="read-more" href="{{ $post.RelPermalink }}">Continue reading</a>
+        </div>
+      </article>
+
+      {{ end }}
+    </div>
+
+    {{ template "_internal/pagination.html" . }}
+  </div>
+
+</div>
+{{ end }}

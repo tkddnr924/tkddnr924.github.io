@@ -1,0 +1,8 @@
+name = "Katen"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A clean blog theme inspired by Katen Classic"
+homepage = "https://github.com/tkddnr924"
+tags = ["blog", "minimal", "responsive"]
+features = ["blog", "responsive", "dark-mode"]
+min_version = "0.100.0"

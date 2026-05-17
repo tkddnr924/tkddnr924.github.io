@@ -1,0 +1,262 @@
+{{ define "head" }}
+<script src="https://cdn.jsdelivr.net/npm/force-graph@1.43.5/dist/force-graph.min.js"></script>
+{{ end }}
+
+{{ define "hero" }}
+<div class="ioc-hero">
+  <div class="container">
+    <h1 class="ioc-hero-title"><i class="fas fa-project-diagram"></i> IoC Graph</h1>
+    <p class="ioc-hero-desc">Threat Intelligence에서 수집된 침해지표(IoC) 관계 그래프</p>
+    <div class="ioc-legend">
+      <span class="ioc-legend-item" data-type="actor"><i></i>Actor</span>
+      <span class="ioc-legend-item" data-type="malware"><i></i>Malware</span>
+      <span class="ioc-legend-item" data-type="campaign"><i></i>Campaign</span>
+      <span class="ioc-legend-item" data-type="cve"><i></i>CVE</span>
+      <span class="ioc-legend-item" data-type="ip"><i></i>IP</span>
+      <span class="ioc-legend-item" data-type="domain"><i></i>Domain</span>
+      <span class="ioc-legend-item" data-type="hash"><i></i>Hash</span>
+      <span class="ioc-legend-item" data-type="url"><i></i>URL</span>
+      <span class="ioc-legend-item" data-type="report"><i></i>Report</span>
+    </div>
+  </div>
+</div>
+{{ end }}
+
+{{ define "main" }}
+<div class="ioc-page">
+
+  <div class="ioc-controls">
+    <div class="ioc-search-wrap">
+      <i class="fas fa-search"></i>
+      <input type="text" id="ioc-search" placeholder="노드 검색..." autocomplete="off">
+    </div>
+    <div class="ioc-filter-wrap">
+      <button class="ioc-filter-btn active" data-filter="all">전체</button>
+      <button class="ioc-filter-btn" data-filter="actor">Actor</button>
+      <button class="ioc-filter-btn" data-filter="malware">Malware</button>
+      <button class="ioc-filter-btn" data-filter="campaign">Campaign</button>
+      <button class="ioc-filter-btn" data-filter="cve">CVE</button>
+      <button class="ioc-filter-btn" data-filter="ip">IP</button>
+      <button class="ioc-filter-btn" data-filter="domain">Domain</button>
+      <button class="ioc-filter-btn" data-filter="hash">Hash</button>
+      <button class="ioc-filter-btn" data-filter="report">Report</button>
+    </div>
+  </div>
+
+  <div class="ioc-layout">
+
+    <div class="ioc-graph-wrap">
+      <div class="ioc-graph-container">
+        <div id="ioc-graph"></div>
+
+        <div class="ioc-detail-panel" id="ioc-detail" style="display:none;">
+          <button class="ioc-detail-close" id="ioc-detail-close"><i class="fas fa-times"></i></button>
+          <div class="ioc-detail-type" id="ioc-detail-type"></div>
+          <div class="ioc-detail-label" id="ioc-detail-label"></div>
+          <div class="ioc-detail-desc" id="ioc-detail-desc"></div>
+          <div class="ioc-detail-links" id="ioc-detail-links"></div>
+        </div>
+
+        <div class="ioc-graph-hint">
+          <i class="fas fa-hand-pointer"></i> 드래그로 이동 &nbsp;·&nbsp;
+          <i class="fas fa-search-plus"></i> 스크롤로 줌 &nbsp;·&nbsp;
+          <i class="fas fa-mouse-pointer"></i> 클릭으로 상세 보기
+        </div>
+      </div>
+    </div>
+
+    <aside class="ioc-reports">
+      <div class="ioc-reports-header">
+        <i class="fas fa-file-alt"></i> Reports
+      </div>
+      <div class="ioc-reports-list">
+        {{ $tiPosts := where .Site.RegularPages "Type" "posts" }}
+        {{ $tiPosts = where $tiPosts "Params.categories" "intersect" (slice "Threat Intelligence") }}
+        {{ if $tiPosts }}
+          {{ range $tiPosts }}
+          <a class="ioc-report-item" href="{{ .RelPermalink }}">
+            <div class="ioc-report-date">{{ .Date.Format "2006-01-02" }}</div>
+            <div class="ioc-report-title">{{ .Title }}</div>
+            <div class="ioc-report-summary">{{ .Summary | truncate 80 }}</div>
+          </a>
+          {{ end }}
+        {{ else }}
+          <div class="ioc-reports-empty">
+            <i class="fas fa-file-circle-xmark"></i>
+            <p>작성된 리포트가 없습니다</p>
+          </div>
+        {{ end }}
+      </div>
+    </aside>
+
+  </div>
+
+</div>
+
+<script>
+(function () {
+  const NODE_COLORS = {
+    actor:    '#f43f5e',
+    malware:  '#a855f7',
+    campaign: '#3b82f6',
+    cve:      '#f97316',
+    ip:       '#14b8a6',
+    domain:   '#06b6d4',
+    hash:     '#eab308',
+    url:      '#84cc16',
+    report:   '#10b981',
+  };
+  const NODE_SIZES = {
+    actor: 10, malware: 9, campaign: 9, cve: 8,
+    ip: 6, domain: 6, hash: 5, url: 5, report: 11,
+  };
+
+  let graphData = { nodes: [], links: [] };
+  let activeFilter = 'all';
+  let searchQuery = '';
+  let Graph;
+
+  function color(type) { return NODE_COLORS[type] || '#888'; }
+  function size(type)  { return NODE_SIZES[type]  || 6; }
+
+  function filteredData() {
+    let nodes = graphData.nodes;
+    if (activeFilter !== 'all') nodes = nodes.filter(n => n.type === activeFilter);
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      nodes = nodes.filter(n => n.label.toLowerCase().includes(q));
+    }
+    const nodeIds = new Set(nodes.map(n => n.id));
+    const links = graphData.links.filter(l =>
+      nodeIds.has(l.source.id || l.source) && nodeIds.has(l.target.id || l.target)
+    );
+    return { nodes: nodes.map(n => ({ ...n })), links: links.map(l => ({ ...l })) };
+  }
+
+  function initGraph(data) {
+    const el = document.getElementById('ioc-graph');
+    const isDark = document.body.classList.contains('dark-mode');
+    const bg = isDark ? '#12121e' : '#f8fafc';
+    const linkColor = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)';
+    const textColor = isDark ? '#cdd6f4' : '#1e293b';
+
+    const w = el.parentElement.offsetWidth;
+    const h = el.parentElement.offsetHeight;
+
+    Graph = ForceGraph()(el)
+      .width(w)
+      .height(h)
+      .backgroundColor(bg)
+      .nodeId('id')
+      .nodeLabel('label')
+      .nodeColor(n => {
+        if (searchQuery && n.label.toLowerCase().includes(searchQuery.toLowerCase())) return '#fff';
+        return color(n.type);
+      })
+      .nodeRelSize(1)
+      .nodeVal(n => size(n.type) * size(n.type))
+      .nodeCanvasObject((node, ctx, globalScale) => {
+        const r = size(node.type);
+        const isHighlighted = searchQuery && node.label.toLowerCase().includes(searchQuery.toLowerCase());
+
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, r, 0, 2 * Math.PI);
+        ctx.fillStyle = isHighlighted ? '#fff' : color(node.type);
+        ctx.fill();
+
+        if (isHighlighted) {
+          ctx.strokeStyle = color(node.type);
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+
+        if (globalScale >= 1.2) {
+          const label = node.label.length > 20 ? node.label.slice(0, 18) + '…' : node.label;
+          ctx.font = `${Math.max(8, 11 / globalScale)}px sans-serif`;
+          ctx.fillStyle = textColor;
+          ctx.textAlign = 'center';
+          ctx.fillText(label, node.x, node.y + r + 8 / globalScale);
+        }
+      })
+      .linkColor(() => linkColor)
+      .linkWidth(1)
+      .linkDirectionalArrowLength(4)
+      .linkDirectionalArrowRelPos(1)
+      .graphData(filteredData())
+      .onNodeClick(node => {
+        if (node.type === 'report' && node.url) {
+          window.location.href = node.url;
+        } else {
+          showDetail(node, data);
+        }
+      });
+
+    Graph.d3Force('charge').strength(-180);
+    Graph.d3Force('link').distance(80);
+
+    window.addEventListener('resize', () => {
+      const nw = el.parentElement.offsetWidth;
+      const nh = el.parentElement.offsetHeight;
+      Graph.width(nw).height(nh);
+    });
+  }
+
+  function showDetail(node, rawData) {
+    const panel = document.getElementById('ioc-detail');
+    document.getElementById('ioc-detail-type').textContent = node.type.toUpperCase();
+    document.getElementById('ioc-detail-type').style.background = color(node.type);
+    document.getElementById('ioc-detail-label').textContent = node.label;
+    document.getElementById('ioc-detail-desc').textContent = node.desc || '';
+
+    const related = rawData.links
+      .filter(l => (l.source.id || l.source) === node.id || (l.target.id || l.target) === node.id)
+      .map(l => {
+        const otherId = (l.source.id || l.source) === node.id ? (l.target.id || l.target) : (l.source.id || l.source);
+        const other = rawData.nodes.find(n => n.id === otherId);
+        const dir = (l.source.id || l.source) === node.id ? '→' : '←';
+        return other ? `<span class="ioc-related-tag" style="border-color:${color(other.type)};color:${color(other.type)}">${dir} ${l.label || ''} <b>${other.label}</b></span>` : '';
+      }).filter(Boolean);
+
+    document.getElementById('ioc-detail-links').innerHTML = related.length
+      ? '<div class="ioc-related-title">관련 노드</div>' + related.join('')
+      : '';
+
+    panel.style.display = 'block';
+  }
+
+  document.getElementById('ioc-detail-close')?.addEventListener('click', () => {
+    document.getElementById('ioc-detail').style.display = 'none';
+  });
+
+  document.querySelectorAll('.ioc-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ioc-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      Graph && Graph.graphData(filteredData());
+    });
+  });
+
+  document.getElementById('ioc-search')?.addEventListener('input', e => {
+    searchQuery = e.target.value.trim();
+    Graph && Graph.graphData(filteredData());
+  });
+
+  fetch('/data/ioc-graph.json')
+    .then(r => r.json())
+    .then(data => {
+      graphData = data;
+      if (!data.nodes || data.nodes.length === 0) {
+        document.getElementById('ioc-graph').innerHTML =
+          `<div class="ioc-graph-empty">
+            <i class="fas fa-diagram-project"></i>
+            <p>등록된 IoC 데이터가 없습니다</p>
+            <span>ioc-graph.json에 노드를 추가하면 그래프가 표시됩니다</span>
+          </div>`;
+        return;
+      }
+      initGraph(data);
+    });
+})();
+</script>
+{{ end }}

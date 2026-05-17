@@ -1,0 +1,50 @@
+<header class="site-header">
+
+  <!-- Top bar: Logo + Social -->
+  <div class="header-top">
+    <div class="container">
+      <div class="header-top-inner">
+        <div class="site-logo">
+          <a href="{{ "/" | relURL }}">{{ .Site.Params.logo | default "ASVV" }}<span class="dot">.</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar: Nav + Search/Menu -->
+  <div class="header-nav-bar">
+    <div class="container">
+      <div class="header-nav-inner">
+        <nav class="main-nav">
+          <ul>
+            {{ range .Site.Menus.main }}
+            <li>
+              {{ $pageURL := $.Page.RelPermalink }}
+              {{ $menuURL := .URL }}
+              {{ $isHome := and (eq $menuURL "/") $.IsHome }}
+              {{ $isCurrent := and (ne $menuURL "/") (strings.HasPrefix $pageURL $menuURL) }}
+              {{ $catActive := false }}
+              {{ range $.Page.Params.categories }}
+                {{ if strings.Contains $menuURL (. | urlize) }}{{ $catActive = true }}{{ end }}
+              {{ end }}
+              {{ $isActive := or $isHome $isCurrent $catActive }}
+              <a href="{{ $menuURL }}" {{ if $isActive }}class="nav-active"{{ end }}>
+                {{ .Name }}
+              </a>
+            </li>
+            {{ end }}
+          </ul>
+        </nav>
+        <div class="nav-actions">
+          <button class="nav-action-btn" id="search-toggle" data-search-open aria-label="Search">
+            <i class="fas fa-search"></i>
+          </button>
+          <button class="nav-action-btn" id="dark-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>

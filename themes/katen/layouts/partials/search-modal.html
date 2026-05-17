@@ -1,0 +1,29 @@
+<div class="search-overlay" id="search-overlay">
+  <div class="search-modal">
+    <div class="search-header">
+      <div class="search-input-wrap">
+        <i class="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="검색어를 입력하세요..."
+          autocomplete="off"
+          autofocus
+        >
+        <kbd class="search-esc-hint">ESC</kbd>
+      </div>
+    </div>
+    <div class="search-body">
+      <div id="search-results"></div>
+      <div class="search-empty" id="search-empty">
+        <i class="fas fa-search"></i>
+        <p>검색어를 입력하면 결과가 나타납니다.</p>
+      </div>
+      <div class="search-no-result" id="search-no-result" style="display:none;">
+        <i class="fas fa-face-frown"></i>
+        <p>검색 결과가 없습니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
