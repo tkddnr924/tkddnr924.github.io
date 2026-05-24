@@ -1,0 +1,9 @@
+<div class="attack-step">
+  <div class="attack-step-icon">
+    {{ with .Get "icon" }}<i class="{{ . }}"></i>{{ else }}<i class="fas fa-chevron-right"></i>{{ end }}
+  </div>
+  <div class="attack-step-body">
+    {{ with .Get "title" }}<div class="attack-step-title">{{ . }}</div>{{ end }}
+    <div class="attack-step-desc">{{ .Inner | markdownify }}</div>
+  </div>
+</div>

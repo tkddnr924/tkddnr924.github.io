@@ -53,25 +53,28 @@ iocs:
 
 ## 공격 흐름
 
-```
-[스피어피싱 이메일]
-항공 e-티켓 / 북한 연구행사 / 국방·경찰 사칭
-    ↓
-[ZIP 첨부파일] → LNK 파일 실행
-    ↓
-[PowerShell] 실행 정책 우회 → BAT 파일 드롭 및 실행
-    ↓
-[BAT] curl.exe로 Python Embed 패키지 다운로드
-       (python-3.10.0-embed-amd64.zip)
-    ↓
-[설치 경로] C:\Users\Public\Music\MusicLibrariesPackage\
-  pythonw.exe → codeflush.exe 로 이름 변경
-    ↓
-[예약 작업 등록] MicrosoftMusicLibrariesPackageTaskMachine
-  (1분 간격 반복 실행)
-    ↓
-[settingenv.cat] Python 컴파일 백도어 실행 → C2 통신
-```
+{{< attack-flow >}}
+{{< step icon="fas fa-envelope-open-text" title="스피어피싱 이메일" >}}
+항공 e-티켓 / 북한 연구행사 / 국방·경찰 공무원 사칭 테마로 타깃 유도
+{{< /step >}}
+{{< step icon="fas fa-file-zipper" title="ZIP 첨부파일 → LNK 실행" >}}
+압축 파일 내 LNK 파일 실행 시 PowerShell 명령 트리거
+{{< /step >}}
+{{< step icon="fas fa-terminal" title="PowerShell 실행 정책 우회" >}}
+`-ExecutionPolicy Bypass` 플래그로 정책 우회 후 BAT 파일 드롭 및 실행
+{{< /step >}}
+{{< step icon="fas fa-download" title="Python Embed 패키지 다운로드" >}}
+`curl.exe`로 `python-3.10.0-embed-amd64.zip` 다운로드 →  
+`C:\Users\Public\Music\MusicLibrariesPackage\` 에 설치,  
+`pythonw.exe` → `codeflush.exe` 로 이름 변경
+{{< /step >}}
+{{< step icon="fas fa-clock" title="예약 작업 등록 (지속성)" >}}
+`MicrosoftMusicLibrariesPackageTaskMachine` 작업 등록, **1분 간격** 반복 실행
+{{< /step >}}
+{{< step icon="fas fa-spider" title="백도어 실행 및 C2 통신" >}}
+`codeflush.exe settingenv.cat` — Python 컴파일 백도어 실행 후 C2 서버와 통신 개시
+{{< /step >}}
+{{< /attack-flow >}}
 
 ---
 

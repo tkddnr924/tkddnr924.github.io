@@ -1595,3 +1595,74 @@ body.dark-mode .site-footer { background: #0e0e1a; }
   .hero-title { font-size: 20px; }
   .post-card-title { font-size: 18px; }
 }
+
+/* ── Attack Flow Shortcode ──────────────────────────────── */
+.attack-flow {
+  margin: 32px 0;
+  position: relative;
+}
+.attack-step {
+  display: flex;
+  gap: 18px;
+  position: relative;
+  padding-bottom: 8px;
+}
+/* 세로 연결선 */
+.attack-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 42px;
+  bottom: -8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary), transparent);
+  opacity: 0.35;
+}
+.attack-step-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #38bdf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(20,184,166,0.25);
+  position: relative;
+  z-index: 1;
+}
+.attack-step-body {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.attack-step-body:hover {
+  border-color: var(--primary);
+}
+.attack-step-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--primary);
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+.attack-step-desc {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.65;
+}
+.attack-step-desc p {
+  margin: 0;
+}
+.attack-step-desc code {
+  font-size: 12px;
+  background: var(--code-bg, rgba(0,0,0,0.06));
+  padding: 1px 6px;
+  border-radius: 4px;
+}
