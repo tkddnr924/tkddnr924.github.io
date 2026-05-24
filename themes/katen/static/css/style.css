@@ -784,6 +784,30 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-head); font-weight: 700; line-height
 .single-post-thumb { margin-bottom: 36px; border-radius: 8px; overflow: hidden; }
 .single-post-thumb img { width: 100%; }
 
+.ai-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(20,184,166,0.08) 0%, rgba(56,189,248,0.08) 100%);
+  border: 1px solid rgba(20,184,166,0.3);
+  border-left: 3px solid var(--primary);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 32px;
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+.ai-notice i {
+  color: var(--primary);
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.ai-notice strong { color: var(--primary); }
+
 .single-post-content { font-size: 16px; line-height: 1.85; color: var(--text); }
 .single-post-content h2 { font-size: 26px; margin: 36px 0 16px; }
 .single-post-content h3 { font-size: 22px; margin: 28px 0 12px; }

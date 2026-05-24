@@ -1,6 +1,6 @@
 ---
 title: "Nimbus Manticore의 이란 분쟁 기간 작전 분석"
-date: 2026-05-25T10:00:00+09:00
+date: 2026-05-24T10:00:00+09:00
 categories: ["Threat Intelligence"]
 tags: ["Nimbus Manticore", "IRGC", "APT", "MiniFast", "AppDomain Hijacking", "SEO Poisoning"]
 author: "tkddnr924"

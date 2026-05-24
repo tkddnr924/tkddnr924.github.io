@@ -30,6 +30,13 @@
     </div>
     {{ end }}
 
+    {{ if in .Params.categories "Threat Intelligence" }}
+    <div class="ai-notice">
+      <i class="fas fa-robot"></i>
+      <span>본 글은 외부 보안 리포트를 기반으로 <strong>AI가 작성</strong>했습니다. 내용의 정확성을 위해 출처를 함께 확인하시기 바랍니다.</span>
+    </div>
+    {{ end }}
+
     <div class="single-post-content">
       {{ .Content }}
     </div>
