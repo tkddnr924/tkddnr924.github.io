@@ -273,7 +273,7 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-head); font-weight: 700; line-height
 .category-hero {
   background: linear-gradient(135deg, #0f2027 0%, #1a3a4a 50%, #0d2d3a 100%);
   padding: 96px 0 88px;
-  margin-bottom: 52px;
+  margin: 32px 0 52px;
   text-align: center;
   position: relative;
   overflow: hidden;
