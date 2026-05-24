@@ -36,6 +36,8 @@ iocs:
 
 ## 개요
 
+{{< img src="/images/posts/apt37-python-backdoor-2026/01-attack-overview.png" alt="APT37 공격 사례 흐름" caption="▲ APT37 경찰 공무원 사칭 공격 사례 흐름도 (출처: 지니언스)" >}}
+
 지니언스 시큐리티 센터(GSC)는 북한 연계 위협 그룹 **APT37(Reaper)**이 딥페이크 사칭, 항공 e-티켓, 국방·경찰 공무원 사칭 등 다양한 사회공학 테마를 활용해 스피어피싱 캠페인을 수행하고 있음을 확인했다. 최종 페이로드는 `.cat` 확장자로 위장한 Python 컴파일 백도어로, 예약 작업을 통해 지속성을 유지하며 원격 명령을 실행한다.
 
 ---
@@ -80,9 +82,15 @@ iocs:
 
 ## 핵심 기법 분석
 
+{{< img src="/images/posts/apt37-python-backdoor-2026/02-phishing-examples.png" alt="스피어피싱 사례별 화면" caption="▲ 항공 e-티켓, 연구행사, 국방·경찰 사칭 등 다양한 스피어피싱 사례 화면 (출처: 지니언스)" >}}
+
 ### 1. 배치 파일 환경변수 치환 난독화
 
 배치 파일 내 명령어를 환경변수 문자 조각으로 분해하는 방식이다. `%var:~offset,length%` 문법을 활용해 실제 실행할 명령어를 런타임에 재조합한다. 정적 분석 도구와 시그니처 기반 탐지를 우회하는 데 효과적이다.
+
+{{< img src="/images/posts/apt37-python-backdoor-2026/03-lnk-params.png" alt="LNK 파일 내부 인자값" caption="▲ LNK 파일 내부 환경변수 치환 난독화 명령 (출처: 지니언스)" >}}
+
+{{< img src="/images/posts/apt37-python-backdoor-2026/04-deobfuscated-cmd.png" alt="원본 명령 복원 결과" caption="▲ 난독화 해제 후 복원된 PowerShell 명령 및 curl.exe 복사 작업 (출처: 지니언스)" >}}
 
 ### 2. Python 바이트코드 .cat 위장
 
@@ -92,6 +100,12 @@ iocs:
 - `chr()` 문자 연결로 문자열 동적 생성
 - `[::-1]` 문자열 역순 변환
 - `getattr(__builtins__, "__import__")` 를 통한 모듈 동적 로딩
+
+{{< img src="/images/posts/apt37-python-backdoor-2026/05-cat-header.png" alt="settingenv.cat 파일 헤더 구조" caption="▲ settingenv.cat 파일 헥스 헤더 — Python 3.10 바이트코드 매직 넘버(6F 0D 0D 0A) 확인 (출처: 지니언스)" >}}
+
+{{< img src="/images/posts/apt37-python-backdoor-2026/06-decompiled-python.png" alt="디컴파일된 Python 코드" caption="▲ 디컴파일된 Python 바이트코드 초기 영역 — chr() 문자 연결 난독화 (출처: 지니언스)" >}}
+
+{{< img src="/images/posts/apt37-python-backdoor-2026/07-deobfuscated-c2.png" alt="난독화 해제된 C2 문자열" caption="▲ 복원된 C2 URL, HTTP 헤더, 인코딩 파라미터 (출처: 지니언스)" >}}
 
 ### 3. LOLBins 악용
 
@@ -121,6 +135,8 @@ iocs:
 
 ## 인프라 연계 분석
 
+{{< img src="/images/posts/apt37-python-backdoor-2026/08-infra-map.png" alt="APT37 인프라 상관 관계도" caption="▲ APT37 캠페인 간 인프라 연계 관계도 (출처: 지니언스)" >}}
+
 APT37은 수년간 동일한 인프라 패턴을 재사용한다.
 
 | 연도 | 도메인 | IP | 악성코드 |
@@ -133,6 +149,10 @@ APT37은 수년간 동일한 인프라 패턴을 재사용한다.
 ---
 
 ## 탐지 권고
+
+{{< img src="/images/posts/apt37-python-backdoor-2026/09-edr-lnk.png" alt="EDR LNK 파일 탐지" caption="▲ EDR을 통해 탐지된 의심스러운 LNK 파일 실행 모습 (출처: 지니언스)" >}}
+
+{{< img src="/images/posts/apt37-python-backdoor-2026/10-edr-c2.png" alt="EDR PowerShell C2 접속" caption="▲ PowerShell과 curl.exe를 통한 C2 접속 시도 EDR 탐지 화면 (출처: 지니언스)" >}}
 
 - **LNK 실행** — 압축 파일 컨텍스트에서 LNK 파일 실행 탐지
 - **PowerShell 정책 우회** — `-ExecutionPolicy Bypass` 플래그 모니터링

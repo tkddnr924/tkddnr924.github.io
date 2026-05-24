@@ -14,6 +14,8 @@ iocs:
 
 ## 개요
 
+{{< img src="/images/posts/telegram-smishing-2026/01-smishing-surge.png" alt="텔레그램 스미싱 급증 현황" caption="▲ 2026년 텔레그램 로그인 스미싱 급증 추이 (출처: AhnLab ASEC)" >}}
+
 2024년 이후 약 2년간 잠잠하던 **텔레그램 계정 탈취 스미싱** 공격이 2026년 5월 다시 확인됐다. 안랩 ASEC이 분석한 이번 캠페인은 보안 알림을 사칭한 메시지로 사용자를 피싱 페이지로 유도하여 로그인 자격증명을 탈취하는 방식이다.
 
 ---
@@ -47,9 +49,13 @@ iocs:
 
 실제 텔레그램 로그인 인터페이스와 시각적으로 거의 동일한 가짜 페이지를 제작한다.
 
+{{< img src="/images/posts/telegram-smishing-2026/02-phishing-compare.png" alt="2024 vs 2026 피싱 사이트 비교" caption="▲ 2024년(좌)과 2026년(우) 피싱 페이지 비교 — 동일한 방식 지속 (출처: AhnLab ASEC)" >}}
+
 **3. User-Agent 탐지 우회**
 
 피싱 서버가 방문자의 User-Agent를 검사하여, 보안 연구자·크롤러·PC 환경으로 식별되면 **정상 텔레그램 사이트로 리다이렉트**한다. 자동화 분석 및 보안 담당자의 탐지를 회피하기 위한 목적이다.
+
+{{< img src="/images/posts/telegram-smishing-2026/03-evasion-code.png" alt="User-Agent 우회 코드" caption="▲ 피싱 서버의 User-Agent 검사 및 우회 로직 코드 (출처: AhnLab ASEC)" >}}
 
 **4. 실시간 2FA 릴레이 (AiTM)**
 

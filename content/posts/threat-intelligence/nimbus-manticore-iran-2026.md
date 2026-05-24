@@ -83,6 +83,8 @@ Check Point Research는 이란 군사 분쟁이 진행 중이던 2026년 2~4월,
 
 ## 3단계 작전 타임라인
 
+{{< img src="/images/posts/nimbus-manticore-iran-2026/01-campaign-timeline.png" alt="캠페인 타임라인" caption="▲ Nimbus Manticore 3단계 작전 타임라인 (출처: Check Point Research)" >}}
+
 ### 1단계 — Rising Tension (2026년 2월)
 미국의 군사 작전(Operation Epic Fury) 시작 수 주 전, 그룹은 **AppDomain Hijacking** 기법을 처음 도입했다. 사우디아라비아·호주 기업을 사칭한 채용 피싱 메일을 통해 악성 ZIP 파일을 배포했으며, OnlyOffice 플랫폼을 배포 채널로 악용했다.
 
@@ -96,6 +98,10 @@ Check Point Research는 이란 군사 분쟁이 진행 중이던 2026년 2~4월,
 
 ## 핵심 기법 분석
 
+{{< img src="/images/posts/nimbus-manticore-iran-2026/02-appdomain-xml.png" alt="AppDomain Hijacking XML 설정" caption="▲ AppDomain Hijacking에 사용된 악성 XML 설정 파일 (출처: Check Point Research)" >}}
+
+{{< img src="/images/posts/nimbus-manticore-iran-2026/03-attack-chain.png" alt="2단계 공격 체인" caption="▲ Operation Epic Fury 단계 공격 체인 다이어그램 (출처: Check Point Research)" >}}
+
 ### AppDomain Hijacking
 정상적인 Microsoft 서명 바이너리(`Setup.exe`)와 함께 악성 XML 설정 파일(`Setup.exe.config`)을 배포한다. .NET 런타임은 설정 파일을 신뢰하므로, 악성 DLL이 **신뢰된 프로세스 컨텍스트** 안에서 로드된다. 로더는 실행 전 호스팅 프로세스 이름(`setup.exe`, `update.exe`)과 부모 프로세스(`svchost.exe`)를 검증해 샌드박스 분석을 회피한다.
 
@@ -106,6 +112,8 @@ Zoom 정상 설치 과정을 사전에 심층 연구해, 감염 체인이 **합�
 MiniFast 코드에서 LLM 활용 흔적이 다수 발견됐다. 단순한 API 호출에도 과도한 오류 처리, 반복적이고 장황한 함수 명명, 디버그 메시지 남용 등이 특징이다. 이는 **AI 도구를 활용한 빠른 악성코드 개발** 능력을 보여준다.
 
 ---
+
+{{< img src="/images/posts/nimbus-manticore-iran-2026/04-sql-developer.png" alt="가짜 SQL Developer 다운로드 페이지" caption="▲ SEO 포이즈닝으로 노출된 가짜 SQL Developer 다운로드 페이지 (출처: Check Point Research)" >}}
 
 ## MiniFast 백도어 상세
 
@@ -125,6 +133,10 @@ MiniFast는 MiniJunk를 대체하는 신형 64비트 DLL 백도어로, `CheckFor
 | 0xB0 | UAC 권한 상승 요청 |
 | 0xB1 | 지속성 설치 (예약 작업: WindowsSecurityUpdate) |
 
+{{< img src="/images/posts/nimbus-manticore-iran-2026/05-minifast-export.png" alt="MiniFast 익스포트 함수 구조" caption="▲ MiniFast DLL 익스포트 함수 구조 (출처: Check Point Research)" >}}
+
+{{< img src="/images/posts/nimbus-manticore-iran-2026/06-minifast-cmd.png" alt="MiniFast 명령 스위치" caption="▲ MiniFast 백도어 명령 코드 스위치 구조 (출처: Check Point Research)" >}}
+
 **C2 통신 구조:**
 - JSON 포맷, Base64 인코딩
 - Chrome User-Agent 위장 (`Chrome/146.0.0.0`)
@@ -133,6 +145,8 @@ MiniFast는 MiniJunk를 대체하는 신형 64비트 DLL 백도어로, `CheckFor
 **난독화:** ROT13 + 문자열 역순 변환으로 런타임 복호화
 
 ---
+
+{{< img src="/images/posts/nimbus-manticore-iran-2026/07-victim-map.png" alt="피해자 지리적 분포" caption="▲ Nimbus Manticore 캠페인 피해자 지리적 분포 — 이스라엘, UAE, 미국 등 (출처: Check Point Research)" >}}
 
 ## 대응 권고
 

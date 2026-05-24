@@ -1,0 +1,4 @@
+<div class="post-img-wrap">
+  <img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default "" }}">
+  {{ with .Get "caption" }}<p class="post-img-caption">{{ . }}</p>{{ end }}
+</div>

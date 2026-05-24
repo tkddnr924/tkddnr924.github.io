@@ -1666,3 +1666,22 @@ body.dark-mode .site-footer { background: #0e0e1a; }
   padding: 1px 6px;
   border-radius: 4px;
 }
+
+/* ── Post Image Caption ──────────────────────────────────── */
+.post-img-wrap {
+  margin: 28px 0;
+  text-align: center;
+}
+.post-img-wrap img {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.post-img-caption {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-light);
+  font-style: italic;
+}
