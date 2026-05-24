@@ -910,6 +910,65 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-head); font-weight: 700; line-height
   vertical-align: middle;
 }
 
+.ioc-section {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.ioc-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ioc-section-title i { color: var(--primary); }
+
+.ioc-block {
+  margin-bottom: 20px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.ioc-block-label {
+  padding: 10px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--gradient);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ioc-block-list {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ioc-value {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 12px;
+  color: var(--primary);
+  background: transparent;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+  word-break: break-all;
+  display: block;
+}
+
+.ioc-value:last-child { border-bottom: none; }
+
 .single-post-tags { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 14px; }
 .single-post-tags strong { margin-right: 10px; }
 
@@ -1267,6 +1326,36 @@ h1,h2,h3,h4,h5,h6 { font-family: var(--font-head); font-weight: 700; line-height
   padding: 3px 8px;
   margin: 3px 3px 0 0;
   line-height: 1.4;
+}
+
+.ioc-zoom-controls {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+.ioc-zoom-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.ioc-zoom-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
 }
 
 .ioc-graph-hint {

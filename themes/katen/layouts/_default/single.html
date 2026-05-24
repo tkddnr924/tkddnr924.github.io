@@ -41,6 +41,65 @@
       {{ .Content }}
     </div>
 
+    {{ with .Params.iocs }}
+    {{ $hashes  := .hashes  }}
+    {{ $domains := .domains }}
+    {{ $ips     := .ips     }}
+    {{ $urls    := .urls    }}
+    {{ if or $hashes $domains $ips $urls }}
+    <div class="ioc-section">
+      <div class="ioc-section-title">
+        <i class="fas fa-shield-halved"></i> Indicators of Compromise (IoC)
+      </div>
+
+      {{ if $hashes }}
+      <div class="ioc-block">
+        <div class="ioc-block-label"><i class="fas fa-fingerprint"></i> Hash</div>
+        <div class="ioc-block-list">
+          {{ range $hashes }}
+          <code class="ioc-value">{{ . }}</code>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ if $domains }}
+      <div class="ioc-block">
+        <div class="ioc-block-label"><i class="fas fa-globe"></i> Domain</div>
+        <div class="ioc-block-list">
+          {{ range $domains }}
+          <code class="ioc-value">{{ . }}</code>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ if $ips }}
+      <div class="ioc-block">
+        <div class="ioc-block-label"><i class="fas fa-network-wired"></i> IP</div>
+        <div class="ioc-block-list">
+          {{ range $ips }}
+          <code class="ioc-value">{{ . }}</code>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{ if $urls }}
+      <div class="ioc-block">
+        <div class="ioc-block-label"><i class="fas fa-link"></i> URL</div>
+        <div class="ioc-block-list">
+          {{ range $urls }}
+          <code class="ioc-value">{{ . }}</code>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+    </div>
+    {{ end }}
+    {{ end }}
+
     {{ with .Params.tags }}
     <div class="single-post-tags">
       <strong>Tags:</strong>

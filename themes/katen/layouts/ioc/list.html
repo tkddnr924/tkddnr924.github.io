@@ -8,21 +8,96 @@
     <h1 class="ioc-hero-title"><i class="fas fa-project-diagram"></i> IoC Graph</h1>
     <p class="ioc-hero-desc">Threat Intelligence에서 수집된 침해지표(IoC) 관계 그래프</p>
     <div class="ioc-legend">
-      <span class="ioc-legend-item" data-type="actor"><i></i>Actor</span>
-      <span class="ioc-legend-item" data-type="malware"><i></i>Malware</span>
-      <span class="ioc-legend-item" data-type="campaign"><i></i>Campaign</span>
-      <span class="ioc-legend-item" data-type="cve"><i></i>CVE</span>
+      <span class="ioc-legend-item" data-type="report"><i></i>Report</span>
       <span class="ioc-legend-item" data-type="ip"><i></i>IP</span>
       <span class="ioc-legend-item" data-type="domain"><i></i>Domain</span>
       <span class="ioc-legend-item" data-type="hash"><i></i>Hash</span>
       <span class="ioc-legend-item" data-type="url"><i></i>URL</span>
-      <span class="ioc-legend-item" data-type="report"><i></i>Report</span>
     </div>
   </div>
 </div>
 {{ end }}
 
 {{ define "main" }}
+
+{{/* ---- 포스트 frontmatter에서 그래프 데이터 자동 빌드 ---- */}}
+{{- $allPosts := where .Site.RegularPages "Type" "posts" -}}
+
+{{- $allHashes  := slice -}}
+{{- $allDomains := slice -}}
+{{- $allIPs     := slice -}}
+{{- $allURLs    := slice -}}
+{{- $postsWithIoc := slice -}}
+
+{{- range $allPosts -}}
+  {{- $iocs := .Params.iocs -}}
+  {{- if $iocs -}}
+    {{- $postsWithIoc = $postsWithIoc | append . -}}
+    {{- range (index $iocs "hashes")  -}}{{- $allHashes  = $allHashes  | append . -}}{{- end -}}
+    {{- range (index $iocs "domains") -}}{{- $allDomains = $allDomains | append . -}}{{- end -}}
+    {{- range (index $iocs "ips")     -}}{{- $allIPs     = $allIPs     | append . -}}{{- end -}}
+    {{- range (index $iocs "urls")    -}}{{- $allURLs    = $allURLs    | append . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $allHashes  = $allHashes  | uniq -}}
+{{- $allDomains = $allDomains | uniq -}}
+{{- $allIPs     = $allIPs     | uniq -}}
+{{- $allURLs    = $allURLs    | uniq -}}
+
+{{- $nodes := slice -}}
+{{- $links := slice -}}
+
+{{- /* Report 노드 */ -}}
+{{- range $postsWithIoc -}}
+  {{- $id := printf "report_%s" .File.BaseFileName -}}
+  {{- $nodes = $nodes | append (dict "id" $id "label" .Title "type" "report" "desc" .Summary "url" .RelPermalink) -}}
+{{- end -}}
+
+{{- /* Hash 노드 */ -}}
+{{- range $allHashes -}}
+  {{- $nodes = $nodes | append (dict "id" (printf "hash_%s" (. | md5)) "label" . "type" "hash" "desc" "") -}}
+{{- end -}}
+
+{{- /* Domain 노드 */ -}}
+{{- range $allDomains -}}
+  {{- $nodes = $nodes | append (dict "id" (printf "domain_%s" (. | md5)) "label" . "type" "domain" "desc" "") -}}
+{{- end -}}
+
+{{- /* IP 노드 */ -}}
+{{- range $allIPs -}}
+  {{- $nodes = $nodes | append (dict "id" (printf "ip_%s" (. | md5)) "label" . "type" "ip" "desc" "") -}}
+{{- end -}}
+
+{{- /* URL 노드 */ -}}
+{{- range $allURLs -}}
+  {{- $nodes = $nodes | append (dict "id" (printf "url_%s" (. | md5)) "label" . "type" "url" "desc" "") -}}
+{{- end -}}
+
+{{- /* 링크 */ -}}
+{{- range $postsWithIoc -}}
+  {{- $reportId := printf "report_%s" .File.BaseFileName -}}
+  {{- $iocs := .Params.iocs -}}
+  {{- range (index $iocs "hashes")  -}}
+    {{- $links = $links | append (dict "source" $reportId "target" (printf "hash_%s"   (. | md5)) "label" "indicator") -}}
+  {{- end -}}
+  {{- range (index $iocs "domains") -}}
+    {{- $links = $links | append (dict "source" $reportId "target" (printf "domain_%s" (. | md5)) "label" "C2") -}}
+  {{- end -}}
+  {{- range (index $iocs "ips")     -}}
+    {{- $links = $links | append (dict "source" $reportId "target" (printf "ip_%s"     (. | md5)) "label" "C2") -}}
+  {{- end -}}
+  {{- range (index $iocs "urls")    -}}
+    {{- $links = $links | append (dict "source" $reportId "target" (printf "url_%s"    (. | md5)) "label" "indicator") -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $graphData := dict "nodes" $nodes "links" $links -}}
+
+<script>
+const IOC_GRAPH_DATA = {{ $graphData | jsonify }};
+</script>
+
 <div class="ioc-page">
 
   <div class="ioc-controls">
@@ -32,14 +107,11 @@
     </div>
     <div class="ioc-filter-wrap">
       <button class="ioc-filter-btn active" data-filter="all">전체</button>
-      <button class="ioc-filter-btn" data-filter="actor">Actor</button>
-      <button class="ioc-filter-btn" data-filter="malware">Malware</button>
-      <button class="ioc-filter-btn" data-filter="campaign">Campaign</button>
-      <button class="ioc-filter-btn" data-filter="cve">CVE</button>
+      <button class="ioc-filter-btn" data-filter="report">Report</button>
       <button class="ioc-filter-btn" data-filter="ip">IP</button>
       <button class="ioc-filter-btn" data-filter="domain">Domain</button>
       <button class="ioc-filter-btn" data-filter="hash">Hash</button>
-      <button class="ioc-filter-btn" data-filter="report">Report</button>
+      <button class="ioc-filter-btn" data-filter="url">URL</button>
     </div>
   </div>
 
@@ -55,6 +127,12 @@
           <div class="ioc-detail-label" id="ioc-detail-label"></div>
           <div class="ioc-detail-desc" id="ioc-detail-desc"></div>
           <div class="ioc-detail-links" id="ioc-detail-links"></div>
+        </div>
+
+        <div class="ioc-zoom-controls">
+          <button class="ioc-zoom-btn" id="ioc-zoom-in"  title="확대"><i class="fas fa-plus"></i></button>
+          <button class="ioc-zoom-btn" id="ioc-zoom-out" title="축소"><i class="fas fa-minus"></i></button>
+          <button class="ioc-zoom-btn" id="ioc-zoom-fit" title="전체 보기"><i class="fas fa-expand"></i></button>
         </div>
 
         <div class="ioc-graph-hint">
@@ -96,22 +174,17 @@
 <script>
 (function () {
   const NODE_COLORS = {
-    actor:    '#f43f5e',
-    malware:  '#a855f7',
-    campaign: '#3b82f6',
-    cve:      '#f97316',
-    ip:       '#14b8a6',
-    domain:   '#06b6d4',
-    hash:     '#eab308',
-    url:      '#84cc16',
-    report:   '#10b981',
+    report:  '#10b981',
+    ip:      '#14b8a6',
+    domain:  '#06b6d4',
+    hash:    '#eab308',
+    url:     '#84cc16',
   };
   const NODE_SIZES = {
-    actor: 10, malware: 9, campaign: 9, cve: 8,
-    ip: 6, domain: 6, hash: 5, url: 5, report: 11,
+    report: 11, ip: 6, domain: 6, hash: 5, url: 5,
   };
 
-  let graphData = { nodes: [], links: [] };
+  let graphData = typeof IOC_GRAPH_DATA === 'string' ? JSON.parse(IOC_GRAPH_DATA) : IOC_GRAPH_DATA;
   let activeFilter = 'all';
   let searchQuery = '';
   let Graph;
@@ -149,10 +222,6 @@
       .backgroundColor(bg)
       .nodeId('id')
       .nodeLabel('label')
-      .nodeColor(n => {
-        if (searchQuery && n.label.toLowerCase().includes(searchQuery.toLowerCase())) return '#fff';
-        return color(n.type);
-      })
       .nodeRelSize(1)
       .nodeVal(n => size(n.type) * size(n.type))
       .nodeCanvasObject((node, ctx, globalScale) => {
@@ -195,9 +264,7 @@
     Graph.d3Force('link').distance(80);
 
     window.addEventListener('resize', () => {
-      const nw = el.parentElement.offsetWidth;
-      const nh = el.parentElement.offsetHeight;
-      Graph.width(nw).height(nh);
+      Graph.width(el.parentElement.offsetWidth).height(el.parentElement.offsetHeight);
     });
   }
 
@@ -242,21 +309,29 @@
     Graph && Graph.graphData(filteredData());
   });
 
-  fetch('/data/ioc-graph.json')
-    .then(r => r.json())
-    .then(data => {
-      graphData = data;
-      if (!data.nodes || data.nodes.length === 0) {
-        document.getElementById('ioc-graph').innerHTML =
-          `<div class="ioc-graph-empty">
-            <i class="fas fa-diagram-project"></i>
-            <p>등록된 IoC 데이터가 없습니다</p>
-            <span>ioc-graph.json에 노드를 추가하면 그래프가 표시됩니다</span>
-          </div>`;
-        return;
-      }
-      initGraph(data);
-    });
+  document.getElementById('ioc-zoom-in')?.addEventListener('click', () => {
+    if (!Graph) return;
+    Graph.zoom(Graph.zoom() * 1.4, 300);
+  });
+  document.getElementById('ioc-zoom-out')?.addEventListener('click', () => {
+    if (!Graph) return;
+    Graph.zoom(Graph.zoom() / 1.4, 300);
+  });
+  document.getElementById('ioc-zoom-fit')?.addEventListener('click', () => {
+    if (!Graph) return;
+    Graph.zoomToFit(400, 40);
+  });
+
+  if (!graphData.nodes || graphData.nodes.length === 0) {
+    document.getElementById('ioc-graph').innerHTML =
+      `<div class="ioc-graph-empty">
+        <i class="fas fa-diagram-project"></i>
+        <p>등록된 IoC 데이터가 없습니다</p>
+        <span>Threat Intelligence 포스트에 iocs 필드를 추가하면 자동으로 표시됩니다</span>
+      </div>`;
+  } else {
+    initGraph(graphData);
+  }
 })();
 </script>
 {{ end }}
