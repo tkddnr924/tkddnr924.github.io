@@ -61,6 +61,11 @@ iocs:
     - "global-check-business-it.azurewebsites[.]net"
     - "globalbusiness-checkers-it.azurewebsites[.]net"
     - "getsqldeveloper[.]com"
+sources:
+  - name: "Check Point Research"
+    date: "2026.05.22"
+    title: "Fast and Furious: Nimbus Manticore Operations During the Iranian Conflict"
+    url: "https://research.checkpoint.com/2026/fast-and-furious-nimbus-manticore-operations-during-the-iranian-conflict/"
 ---
 
 ## 개요
@@ -154,11 +159,3 @@ MiniFast는 MiniJunk를 대체하는 신형 64비트 DLL 백도어로, `CheckFor
 2. **예약 작업 변조 탐지** — `ZoomUpdateTaskUser-*` 작업의 비정상적인 수정 이벤트 모니터링
 3. **SEO 포이즈닝 대응** — 소프트웨어 다운로드 시 반드시 공식 벤더 사이트에서만 수행
 4. **아래 IoC 차단** — 도메인 및 해시를 EDR/네트워크 장비에 즉시 등록
-
----
-
-## 출처
-
-> Check Point Research (2026.05.22)
-> **"Fast and Furious: Nimbus Manticore Operations During the Iranian Conflict"**
-> [https://research.checkpoint.com/2026/fast-and-furious-nimbus-manticore-operations-during-the-iranian-conflict/](https://research.checkpoint.com/2026/fast-and-furious-nimbus-manticore-operations-during-the-iranian-conflict/)

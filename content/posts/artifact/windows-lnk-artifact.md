@@ -6,6 +6,14 @@ tags: ["LNK", "Shell Link", "Windows Forensics", "Artifact", "DFIR", "파일시�
 author: "tkddnr924"
 ai_written: true
 summary: "Windows LNK(바로가기) 파일은 사용자의 파일 접근 행위를 기록하는 핵심 포렌식 아티팩트다. 대상 파일의 타임스탬프·볼륨 시리얼·MAC 주소까지 추출 가능하며, 악성코드 유포에도 적극 활용된다. 파일 구조, 저장 위치, 포렌식 가치, 분석 도구를 정리한다."
+sources_label: "참고 명세"
+sources:
+  - name: "Microsoft Open Specifications"
+    title: "[MS-SHLLINK] Shell Link Binary File Format"
+  - name: "SANS FOR500"
+    title: "Windows Forensic Analysis"
+  - name: "Eric Zimmerman's Tools"
+    url: "https://ericzimmerman.github.io/"
 ---
 
 ## 개요
@@ -203,11 +211,3 @@ with open("document.lnk", "rb") as f:
 | **Eric Zimmerman's JLECmd** | Jump List 분석 (AutoDest/CustomDest) |
 | **ExifTool** | 기본 메타데이터 추출 |
 | **CyberChef** | 16진수 직접 파싱 |
-
----
-
-## 참고 명세
-
-- Microsoft Open Specifications: **[MS-SHLLINK]** Shell Link Binary File Format
-- SANS FOR500 — Windows Forensic Analysis
-- Eric Zimmerman's Tools: [https://ericzimmerman.github.io/](https://ericzimmerman.github.io/)

@@ -12,6 +12,11 @@ iocs:
     - "kali365[.]com"
   ips: []
   urls: []
+sources:
+  - name: "Check Point Research"
+    date: "2026.05.25"
+    title: "25th May – Threat Intelligence Report"
+    url: "https://research.checkpoint.com/2026/25th-may-threat-intelligence-report/"
 ---
 
 ## 개요
@@ -138,11 +143,3 @@ GitHub 태그 재작성으로 악성 커밋을 가리키도록 조작했다. **�
 | AI 자동화 실행 명령 | 5,000건+ |
 | DACH 지역 위협 증가율 | 124% |
 | 중동 C2 서버 | 1,350개+ (98개 공급자) |
-
----
-
-## 출처
-
-> Check Point Research (2026.05.25)
-> **"25th May – Threat Intelligence Report"**
-> [https://research.checkpoint.com/2026/25th-may-threat-intelligence-report/](https://research.checkpoint.com/2026/25th-may-threat-intelligence-report/)

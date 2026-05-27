@@ -18,6 +18,11 @@ iocs:
     - "38.32.68[.]195"
     - "222.122.49[.]15"
   urls: []
+sources:
+  - name: "지니언스 시큐리티 센터"
+    date: "2026.05"
+    title: "APT37의 프리텍스팅 기반 표적 침투: 페이스북 사전 정찰 및 소프트웨어 변조 공격 분석"
+    url: "https://www.genians.co.kr/blog/threat_intelligence/pretexting"
 ---
 
 ## 개요
@@ -175,11 +180,3 @@ Qihoo 360(`360Tray.exe`) 보안 솔루션 존재 여부를 확인하는 안티�
 - **EDR 프로세스 트리 분석** — 정상 인스톨러 실행 후 비정상 자식 프로세스 탐지
 - **dism.exe 정지 생성 모니터링** — `CREATE_SUSPENDED` 플래그 동반 실행 탐지
 - **Zoho WorkDrive API 트래픽** — OAuth 토큰 기반 비정상 접근 패턴 탐지
-
----
-
-## 출처
-
-> 지니언스 시큐리티 센터 (2026.05)
-> **"APT37의 프리텍스팅 기반 표적 침투: 페이스북 사전 정찰 및 소프트웨어 변조 공격 분석"**
-> [https://www.genians.co.kr/blog/threat_intelligence/pretexting](https://www.genians.co.kr/blog/threat_intelligence/pretexting)

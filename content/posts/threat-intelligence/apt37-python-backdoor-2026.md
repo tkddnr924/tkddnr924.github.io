@@ -32,6 +32,11 @@ iocs:
     - "211.239.157[.]126"
     - "218.150.78[.]198"
     - "220.73.160[.]23"
+sources:
+  - name: "지니언스 시큐리티 센터"
+    date: "2026.05"
+    title: "Python으로 무장한 APT37, 딥페이크 사칭 스피어피싱 캠페인 분석"
+    url: "https://www.genians.co.kr/blog/threat_intelligence/python"
 ---
 
 ## 개요
@@ -160,11 +165,3 @@ APT37은 수년간 동일한 인프라 패턴을 재사용한다.
 - **Python 패키지 다운로드** — 공용 경로(`C:\Users\Public\`) 내 python zip 다운로드 탐지
 - **의심 예약 작업** — `Microsoft*` 접두사 작업 중 비시스템 경로 실행 탐지
 - **비표준 확장자 실행** — `.cat`, `.bat` 등 비시스템 경로 실행 탐지
-
----
-
-## 출처
-
-> 지니언스 시큐리티 센터 (2026.05)
-> **"Python으로 무장한 APT37, 딥페이크 사칭 스피어피싱 캠페인 분석"**
-> [https://www.genians.co.kr/blog/threat_intelligence/python](https://www.genians.co.kr/blog/threat_intelligence/python)

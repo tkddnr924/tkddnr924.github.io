@@ -32,8 +32,22 @@
 
     {{ if or (in .Params.categories "Threat Intelligence") .Params.ai_written }}
     <div class="ai-notice">
-      <i class="fas fa-robot"></i>
-      <span>본 글은 <strong>AI가 작성</strong>했습니다. 내용의 정확성을 위해 출처를 함께 확인하시기 바랍니다.</span>
+      <div class="ai-notice-head">
+        <i class="fas fa-robot"></i>
+        <span>본 글은 <strong>AI가 작성</strong>했습니다. 내용의 정확성을 위해 출처를 함께 확인하시기 바랍니다.</span>
+      </div>
+      {{ with .Params.sources }}
+      <div class="ai-notice-sources">
+        <div class="ai-notice-sources-label"><i class="fas fa-link"></i><span>{{ $.Params.sources_label | default "출처" }}</span></div>
+        {{ range . }}
+        <div class="ai-notice-source">
+          <span class="ai-notice-source-meta">{{ with .name }}<strong>{{ . }}</strong>{{ end }}{{ with .date }} · {{ . }}{{ end }}</span>
+          {{ with .title }}<span class="ai-notice-source-title">{{ . }}</span>{{ end }}
+          {{ with .url }}<a class="ai-notice-source-url" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ . }}</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
     </div>
     {{ end }}
 

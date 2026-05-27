@@ -10,6 +10,11 @@ iocs:
   hashes: []
   domains: []
   ips: []
+sources:
+  - name: "안랩 ASEC"
+    date: "2026.05"
+    title: "텔레그램 계정 탈취 스미싱 공격 재등장"
+    url: "https://asec.ahnlab.com/ko/93789/"
 ---
 
 ## 개요
@@ -79,11 +84,3 @@ iocs:
 | 의심 링크 차단 | 보안 알림 사칭 문자의 링크 클릭 금지 |
 | 활성 세션 확인 | 설정 → 기기 → 알 수 없는 세션 즉시 종료 |
 | 외부 입력 거부 | 텔레그램 인증코드를 외부 사이트에 절대 입력 금지 |
-
----
-
-## 출처
-
-> 안랩 ASEC (2026.05)
-> **"텔레그램 계정 탈취 스미싱 공격 재등장"**
-> [https://asec.ahnlab.com/ko/93789/](https://asec.ahnlab.com/ko/93789/)
