@@ -51,3 +51,9 @@ summaryLength = 30
 [taxonomies]
   category = "categories"
   tag = "tags"
+
+# 한글/CJK 문자 경계에서도 `**볼드**` 등 강조 구문이 정상 인식되도록 Goldmark CJK 확장 활성화
+[markup.goldmark.extensions.cjk]
+  enable = true
+  eastAsianLineBreaks = false
+  escapedSpace = false
