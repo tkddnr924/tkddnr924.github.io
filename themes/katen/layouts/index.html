@@ -49,22 +49,20 @@
         <p class="empty-state-desc">첫 번째 포스트를 작성해 보세요.</p>
       </div>
       {{ end }}
-      {{ range $i, $post := $posts }}
 
-      {{ if and (gt $i 0) (eq (mod $i 2) 0) }}
-      {{ with index $post.Params.categories 0 }}
+      {{/* 카테고리별 섹션 렌더링 — 고정 순서: Artifact, DFIR, Threat Intelligence. 글이 없는 섹션은 표시하지 않는다. */}}
+      {{ $order := slice "Artifact" "DFIR" "Threat Intelligence" }}
+      {{ range $cat := $order }}
+      {{ $catPosts := where $posts "Params.categories" "intersect" (slice $cat) }}
+      {{ if $catPosts }}
       <div class="category-divider">
-        <a class="category-badge" href="{{ (index $.Site.Taxonomies.categories (lower .)).Page.RelPermalink }}">{{ . }}</a>
+        <a class="category-badge" href="/categories/{{ $cat | urlize }}/">{{ $cat }}</a>
       </div>
-      {{ end }}
-      {{ end }}
-
-      {{ $tag := index $post.Params.categories 0 | default (index $post.Params.tags 0) | default "Post" }}
-
+      {{ range $post := $catPosts }}
       <article class="post-card">
         <div class="post-card-thumb">
           <div class="thumb-gradient" style="background: linear-gradient(135deg, #38bdf8 0%, #14b8a6 100%);">
-            <span class="thumb-tag-text">{{ $tag }}</span>
+            <span class="thumb-tag-text">{{ $cat }}</span>
           </div>
         </div>
         <div class="post-card-body">
@@ -85,7 +83,8 @@
           <a class="read-more" href="{{ $post.RelPermalink }}">Continue reading</a>
         </div>
       </article>
-
+      {{ end }}
+      {{ end }}
       {{ end }}
     </div>
 
