@@ -1627,12 +1627,44 @@ body.dark-mode .site-footer { background: #0e0e1a; }
   .header-social { display: none; }
   .single-post-title { font-size: 26px; }
   .footer-inner { flex-direction: column; text-align: center; }
+
+  /* 모바일 네비 — 페이지 가로 스크롤 대신 nav 내부에서만 가로 스크롤 */
+  .container { padding: 0 16px; }
+  .header-nav-inner { gap: 8px; }
+  .main-nav { flex: 1 1 auto; min-width: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .main-nav::-webkit-scrollbar { display: none; }
+  .main-nav ul { gap: 4px; padding-right: 4px; }
+  .main-nav ul li a { padding: 7px 13px; font-size: 13px; }
+  .nav-action-btn { width: 34px; height: 34px; font-size: 13px; flex-shrink: 0; }
+
+  /* 카테고리 / IoC 히어로 — 모바일 사이즈 다운 */
+  .category-hero { padding: 60px 0 52px; margin: 16px 0 32px; border-radius: 14px; }
+  .category-hero-icon { width: 52px; height: 52px; font-size: 20px; margin-bottom: 16px; }
+  .category-hero-title { font-size: 28px; }
+  .category-hero-desc { font-size: 14px; padding: 0 6px; line-height: 1.7; }
+  .category-hero-meta { gap: 10px; flex-wrap: wrap; }
+
+  .ioc-hero { padding: 60px 16px 48px; }
+  .ioc-hero-title { font-size: 28px; }
+  .ioc-hero-desc { font-size: 14px; }
 }
 
 @media (max-width: 480px) {
   .hero-title { font-size: 20px; }
   .post-card-title { font-size: 18px; }
+  .container { padding: 0 14px; }
+  .site-logo a { font-size: 24px; }
+  .site-logo a .dot { font-size: 30px; top: 3px; }
+  .main-nav ul li a { padding: 6px 11px; font-size: 12.5px; }
+  .category-hero { padding: 48px 0 42px; margin: 12px 0 28px; }
+  .category-hero-icon { width: 48px; height: 48px; font-size: 18px; }
+  .category-hero-title { font-size: 22px; letter-spacing: -0.3px; }
+  .category-hero-desc { font-size: 13px; }
+  .ioc-hero-title { font-size: 22px; }
 }
+
+/* 모바일에서 페이지 자체가 가로 스크롤되지 않도록 안전 가드 */
+html, body { overflow-x: hidden; max-width: 100%; }
 
 /* ── Attack Flow Shortcode ──────────────────────────────── */
 .attack-flow {
