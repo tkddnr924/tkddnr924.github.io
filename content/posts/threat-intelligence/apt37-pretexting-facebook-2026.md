@@ -1,6 +1,6 @@
 ---
 title: "APT37의 페이스북 위장 접근 및 소프트웨어 변조 공격 분석"
-date: 2026-05-25T01:00:00+09:00
+date: 2026-05-25T03:40:04+09:00
 categories: ["Threat Intelligence"]
 tags: ["APT37", "북한", "RokRAT", "Pretexting", "Social Engineering", "Process Injection", "Fileless", "Zoho"]
 author: "tkddnr924"

@@ -1,6 +1,6 @@
 ---
 title: "카드사 '보안 메일' 사칭 악성 LNK 유포 분석 — Kimsuky 연계"
-date: 2026-05-27T11:00:00+09:00
+date: 2026-05-27T23:34:10+09:00
 categories: ["Threat Intelligence"]
 tags: ["Kimsuky", "북한", "LNK", "Phishing", "Info-Stealer", "Backdoor", "Keylogger", "mshta", "보안메일사칭"]
 author: "tkddnr924"

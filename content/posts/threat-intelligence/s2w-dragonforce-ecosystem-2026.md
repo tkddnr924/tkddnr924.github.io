@@ -1,6 +1,6 @@
 ---
 title: "DragonForce 랜섬웨어 생태계·운영 분석 — RaaS 카르텔 (S2W TALON)"
-date: 2026-05-28T14:00:00+09:00
+date: 2026-05-28T16:21:39+09:00
 categories: ["Threat Intelligence"]
 tags: ["DragonForce", "Ransomware", "RaaS", "LockBit", "Cartel", "BYOVD", "ChaCha8", "ESXi", "RansomBay"]
 author: "tkddnr924"

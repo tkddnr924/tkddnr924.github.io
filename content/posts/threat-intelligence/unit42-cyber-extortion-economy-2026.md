@@ -1,6 +1,6 @@
 ---
 title: "사이버 갈취 경제의 진화 — 암호화 없는 데이터 탈취 동향 분석 (Unit 42)"
-date: 2026-05-27T13:00:00+09:00
+date: 2026-05-28T11:41:49+09:00
 categories: ["Threat Intelligence"]
 tags: ["Cyber Extortion", "Ransomware", "Data Theft", "Vishing", "Supply Chain", "TGR-CRI-1135", "Bling Libra", "BlackFile", "Frontier AI", "SaaS"]
 author: "tkddnr924"

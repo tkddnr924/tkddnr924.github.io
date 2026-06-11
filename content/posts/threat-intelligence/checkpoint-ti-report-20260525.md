@@ -1,6 +1,6 @@
 ---
 title: "Check Point 주간 TI 리포트 — 2026년 5월 25일"
-date: 2026-05-25T03:00:00+09:00
+date: 2026-05-26T14:25:11+09:00
 categories: ["Threat Intelligence"]
 tags: ["Check Point", "주간리포트", "ShinyHunters", "Kali365", "AI 위협", "Linux 악성코드", "공급망 공격", "랜섬웨어"]
 author: "tkddnr924"

@@ -1,6 +1,6 @@
 ---
 title: "Windows LNK(바로가기) 파일 아티팩트 분석"
-date: 2026-05-25T02:00:00+09:00
+date: 2026-05-25T04:07:36+09:00
 categories: ["Artifact"]
 tags: ["LNK", "Shell Link", "Windows Forensics", "Artifact", "DFIR", "파일시스템"]
 author: "tkddnr924"
