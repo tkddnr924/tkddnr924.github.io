@@ -92,6 +92,38 @@
   {{- end -}}
 {{- end -}}
 
+{{- /* 동일 IoC를 공유하는 Report 간 직접 링크 */ -}}
+{{- range $i, $sourcePost := $postsWithIoc -}}
+  {{- $sourceIocs := $sourcePost.Params.iocs -}}
+  {{- $sourceIndicators := slice -}}
+  {{- range (index $sourceIocs "hashes")  -}}{{- $sourceIndicators = $sourceIndicators | append (printf "hash:%s" .) -}}{{- end -}}
+  {{- range (index $sourceIocs "domains") -}}{{- $sourceIndicators = $sourceIndicators | append (printf "domain:%s" .) -}}{{- end -}}
+  {{- range (index $sourceIocs "ips")     -}}{{- $sourceIndicators = $sourceIndicators | append (printf "ip:%s" .) -}}{{- end -}}
+  {{- range (index $sourceIocs "urls")    -}}{{- $sourceIndicators = $sourceIndicators | append (printf "url:%s" .) -}}{{- end -}}
+
+  {{- range $j, $targetPost := $postsWithIoc -}}
+    {{- if gt $j $i -}}
+      {{- $targetIocs := $targetPost.Params.iocs -}}
+      {{- $targetIndicators := slice -}}
+      {{- range (index $targetIocs "hashes")  -}}{{- $targetIndicators = $targetIndicators | append (printf "hash:%s" .) -}}{{- end -}}
+      {{- range (index $targetIocs "domains") -}}{{- $targetIndicators = $targetIndicators | append (printf "domain:%s" .) -}}{{- end -}}
+      {{- range (index $targetIocs "ips")     -}}{{- $targetIndicators = $targetIndicators | append (printf "ip:%s" .) -}}{{- end -}}
+      {{- range (index $targetIocs "urls")    -}}{{- $targetIndicators = $targetIndicators | append (printf "url:%s" .) -}}{{- end -}}
+
+      {{- $sharedIndicators := intersect $sourceIndicators $targetIndicators -}}
+      {{- if $sharedIndicators -}}
+        {{- $links = $links | append (dict
+          "source" (printf "report_%s" $sourcePost.File.BaseFileName)
+          "target" (printf "report_%s" $targetPost.File.BaseFileName)
+          "label" (printf "shared IoC (%d)" (len $sharedIndicators))
+          "type" "shared-ioc"
+          "shared" $sharedIndicators
+        ) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 {{- $graphData := dict "nodes" $nodes "links" $links -}}
 
 <script>
@@ -247,9 +279,10 @@ const IOC_GRAPH_DATA = {{ $graphData | jsonify }};
           ctx.fillText(label, node.x, node.y + r + 8 / globalScale);
         }
       })
-      .linkColor(() => linkColor)
-      .linkWidth(1)
-      .linkDirectionalArrowLength(4)
+      .linkColor(link => link.type === 'shared-ioc' ? '#f97316' : linkColor)
+      .linkWidth(link => link.type === 'shared-ioc' ? 2.5 : 1)
+      .linkLabel(link => link.label || '')
+      .linkDirectionalArrowLength(link => link.type === 'shared-ioc' ? 0 : 4)
       .linkDirectionalArrowRelPos(1)
       .graphData(filteredData())
       .onNodeClick(node => {
