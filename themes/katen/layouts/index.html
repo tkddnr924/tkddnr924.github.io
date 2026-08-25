@@ -42,6 +42,7 @@
   <div class="posts-area">
     <div class="posts-list">
       {{ $posts := where .Site.RegularPages "Type" "posts" }}
+      {{ $paginator := .Paginate $posts }}
       {{ if not $posts }}
       <div class="empty-state">
         <div class="empty-state-icon"><i class="fas fa-pen-nib"></i></div>
@@ -50,10 +51,10 @@
       </div>
       {{ end }}
 
-      {{/* 카테고리별 섹션 렌더링 — 고정 순서: Artifact, DFIR, Threat Intelligence. 글이 없는 섹션은 표시하지 않는다. */}}
-      {{ $order := slice "Artifact" "DFIR" "Threat Intelligence" }}
+      {{/* 현재 페이지의 글을 카테고리별 고정 순서로 렌더링한다. */}}
+      {{ $order := slice "Artifact" "Threat Intelligence" }}
       {{ range $cat := $order }}
-      {{ $catPosts := where $posts "Params.categories" "intersect" (slice $cat) }}
+      {{ $catPosts := where $paginator.Pages "Params.categories" "intersect" (slice $cat) }}
       {{ if $catPosts }}
       <div class="category-divider">
         <a class="category-badge" href="/categories/{{ $cat | urlize }}/">{{ $cat }}</a>

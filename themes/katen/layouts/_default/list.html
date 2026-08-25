@@ -16,6 +16,7 @@
 <div class="content-wrapper">
   <div class="posts-area">
     <div class="posts-list">
+      {{ $paginator := .Paginate .Pages }}
       {{ if not .Pages }}
       <div class="empty-state">
         <div class="empty-state-icon"><i class="fas fa-folder-open"></i></div>
@@ -23,7 +24,7 @@
         <p class="empty-state-desc">이 카테고리에 첫 번째 포스트를 작성해 보세요.</p>
       </div>
       {{ end }}
-      {{ range $i, $post := .Pages }}
+      {{ range $i, $post := $paginator.Pages }}
       {{ $tag := index $post.Params.categories 0 | default (index $post.Params.tags 0) | default "Post" }}
 
       <article class="post-card">
